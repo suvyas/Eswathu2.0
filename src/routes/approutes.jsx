@@ -5,22 +5,24 @@ import Footer from "@/components/layout/footer/footer";
 
 import Home from "@/features/home/home";
 import Login from "@/features/auth/login";
-import Dashboard from "@/features/dashboard/dashboard";
+import EswathuSearchProperty from "@/features/dashboard/EswathuSearchProperty";
 
 const appRoutes = () => {
   return (
     <BrowserRouter>
+      <Header />
+      <div style={{ flex: 1, backgroundColor: "lightblue"   }}>
       <Routes>
 
         {/* Home */}
         <Route
           path="/"
           element={
-            <>
-              <Header />
+          
+            
               <Home />
-              <Footer />
-            </>
+            
+          
           }
         />
 
@@ -32,17 +34,19 @@ const appRoutes = () => {
 
         {/* Dashboard */}
         <Route
-          path="/dashboard"
+          path="/EswathuSearchProperty"
           element={
-            <>
-              <Header />
-              <Dashboard />
-              <Footer />
-            </>
+           
+              
+              <EswathuSearchProperty />
+          
+        
           }
         />
-
+ 
       </Routes>
+       </div>
+       <Footer />
     </BrowserRouter>
   );
 };

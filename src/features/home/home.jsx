@@ -1,6 +1,11 @@
 import { Box, Typography, Button, Container } from "@mui/material";
-
+import { useNavigate } from 'react-router-dom';
 const Home = () => {
+ const navigate = useNavigate();
+const handleNavigation = () =>  {
+  navigate('/EswathuSearchProperty')
+}
+
   return (
     <Container maxWidth="xl">
       <Box
@@ -44,6 +49,7 @@ const Home = () => {
         <Button
           variant="contained"
           size="large"
+          onClick={handleNavigation}
         >
           Get Started
         </Button>
