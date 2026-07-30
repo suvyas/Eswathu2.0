@@ -1,6 +1,6 @@
 import { Box, Typography, Divider } from "@mui/material";
 
-const Footer = () => {
+const footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -64,4 +64,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default footer;

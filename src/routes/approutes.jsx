@@ -1,29 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Header from "@/components/layout/header/header";
-import Footer from "@/components/layout/footer/footer";
-
 import Home from "@/features/home/home";
 import Login from "@/features/auth/login";
 import EswathuSearchProperty from "@/features/dashboard/EswathuSearchProperty";
 
-const appRoutes = () => {
+import Header from "@/components/layout/header/header";
+import Footer from "@/components/layout/footer/footer";
+
+const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Header />
     
       <Routes>
-
-        {/* Home */}
+        {/* Landing Page */}
         <Route
           path="/"
-          element={
-          
-            
-              <Home />
-            
-          
-          }
+          element={<Home />}
         />
 
         {/* Login */}
@@ -43,7 +36,6 @@ const appRoutes = () => {
         
           }
         />
- 
       </Routes>
        
        <Footer />
@@ -51,4 +43,4 @@ const appRoutes = () => {
   );
 };
 
-export default appRoutes;
+export default AppRoutes;
