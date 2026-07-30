@@ -11,7 +11,7 @@ const appRoutes = () => {
   return (
     <BrowserRouter>
       <Header />
-      <div style={{ flex: 1, backgroundColor: "lightblue"   }}>
+    
       <Routes>
 
         {/* Home */}
@@ -45,7 +45,7 @@ const appRoutes = () => {
         />
  
       </Routes>
-       </div>
+       
        <Footer />
     </BrowserRouter>
   );
