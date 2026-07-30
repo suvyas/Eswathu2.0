@@ -98,8 +98,8 @@ const header = () => {
     ]
   };
  
-  const menuTitles = ['ನಾಗರಿಕರಿಗಾಗಿ', 'ಪರಿಶೀಲಿಸಿ', 'ವರದಿಗಳು'];
-
+ // const menuTitles = ['ನಾಗರಿಕರಿಗಾಗಿ', 'ಪರಿಶೀಲಿಸಿ', 'ವರದಿಗಳು'];
+const menuTitles = [];
   const handleRedirect = (url) => {
     window.open(url, '_blank');
     if (isMobile) {
@@ -181,9 +181,9 @@ const header = () => {
           </React.Fragment>
         ))}
 
-        <ListItem button onClick={() => handleRedirect('https://bbmptax.karnataka.gov.in/')}>
+        {/* <ListItem button onClick={() => handleRedirect('https://bbmptax.karnataka.gov.in/')}>
           <ListItemText primary="ಆಸ್ತಿ ತೆರಿಗೆ" />
-        </ListItem>
+        </ListItem> */}
 
         <ListItem button onClick={() => handleRefresh('https://bbmpeaasthi.karnataka.gov.in/office/frmLoginNew.aspx')}>
           <ListItemText primary="Department Login" />
@@ -327,7 +327,7 @@ const header = () => {
             <Button 
               color="inherit" 
               sx={{ fontSize: '0.9rem' }} 
-              onClick={() => handleRefresh('https://bbmpeaasthi.karnataka.gov.in')}
+              onClick={() => handleRefresh('https://eswathu.karnataka.gov.in/citizen_core')}
             >
               ಮುಖಪುಟ
             </Button>
@@ -391,20 +391,20 @@ const header = () => {
               </Box>
             ))}
 
-            <Button 
+            {/* <Button 
               color="inherit" 
               sx={{ fontSize: '0.9rem' }} 
               onClick={() => handleRedirect('https://bbmptax.karnataka.gov.in/')}
             >
               ಆಸ್ತಿ ತೆರಿಗೆ
-            </Button>
+            </Button> */}
 
             <Box sx={{ flexGrow: 0.5 }} />
 
             <Button 
               color="inherit" 
               sx={{ fontSize: '0.9rem' }} 
-              onClick={() => handleRefresh('https://bbmpeaasthi.karnataka.gov.in/office/frmLoginNew.aspx')}
+              onClick={() => handleRefresh('https://eswathu.karnataka.gov.in/login.aspx')}
             >
               Department Login
             </Button>
