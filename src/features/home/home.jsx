@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import React, { useState, useEffect, useRef } from 'react';
 
 
@@ -237,9 +239,6 @@ const CSS = `.lp-root *{box-sizing:border-box}
   }
 `;
 
-/* ─────────────────────────────────────────
-   EMBLEM SVGs (static — extracted from HTML)
-───────────────────────────────────────── */
 const IndiaEmblem = () => (
   <svg width="52" height="60" viewBox="0 0 52 60" fill="none">
     <rect x="8" y="52" width="36" height="6" rx="2" fill="#8B7355"/>
@@ -356,11 +355,9 @@ const Arrow = () => (
   </svg>
 );
 
-/* ═══════════════════════════════════════════
-   MAIN COMPONENT
-═══════════════════════════════════════════ */
 const home = () => {
   // ── State ──
+   const navigate = useNavigate();
   const [activeTab, setActiveTab]         = useState('citizen'); // login tab
   const [modalOpen, setModalOpen]         = useState(false);
   const [defaultTab, setDefaultTab]       = useState('citizen');
@@ -369,11 +366,9 @@ const home = () => {
   const [searchQuery, setSearchQuery]     = useState('');
   const [searchDistrict, setSearchDistrict] = useState('');
 
-  // Login form state
   const [citizenForm, setCitizenForm]     = useState({ mobile: '', password: '', captcha: '' });
   const [deptForm, setDeptForm]           = useState({ userId: '', password: '', role: '', captcha: '' });
 
-  // Intersection observer for fade-in sections
   const fadeRefs = useRef([]);
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -386,7 +381,6 @@ const home = () => {
 
   const addFadeRef = el => { if (el && !fadeRefs.current.includes(el)) fadeRefs.current.push(el); };
 
-  // ── Modal helpers ──
   const openLogin = (tab = 'citizen') => {
     setDefaultTab(tab);
     setActiveTab(tab);
@@ -398,16 +392,63 @@ const home = () => {
     document.body.style.overflow = '';
   };
 
-  // ── Service tabs ──
   const serviceTabs  = ['All', 'Documents', 'Search', 'Verification'];
   const serviceCards = [
-    { icon: '🔍', title: 'Search Property',       desc: 'Search by District, Taluk, GP, Village, and Property ID or owner name. Free and instant — no login needed.', link: 'Go to search',         cat: 'Search',       featured: true  },
-    { icon: '📄', title: 'Download Form 9',        desc: 'Download digitally signed Form 9 (Property Register Extract). PDF password is your Property ID.',              link: 'Download now',        cat: 'Documents',    featured: true  },
-    { icon: '📋', title: 'Download Form 11B',      desc: 'Get the Demand & Collection Register extract showing tax history and mutation records for your property.',       link: 'Download now',        cat: 'Documents',    featured: false },
-    { icon: '✅', title: 'Verify Document',         desc: 'Verify authenticity of any e-Swathu document by entering certificate number or scanning QR code.',             link: 'Verify certificate',  cat: 'Verification', featured: false },
-    { icon: '🔄', title: 'Track Mutation Status',  desc: 'Enter your application number to check status of property transfer / mutation requests at your Gram Panchayat.',link: 'Track status',        cat: 'Verification', featured: false },
-    { icon: '🗺️', title: 'Property Map (GIS)',     desc: 'View property boundaries on GIS maps. Confirm plot location, survey number, and adjacent land records.',        link: 'View on map',         cat: 'Search',       featured: false },
-  ];
+                        {
+                          icon: "🔍",
+                          title: "Search Property",
+                          desc: "...",
+                          link: "Go to search",
+                          route: "/EswathuSearchProperty",
+                          cat: "Search",
+                          featured: true,
+                        },
+                        {
+                          icon: "📄",
+                          title: "Download Form 9",
+                          desc: "...",
+                          link: "Download now",
+                          route: "/download-form9",
+                          cat: "Documents",
+                          featured: true,
+                        },
+                        {
+                          icon: "📋",
+                          title: "Download Form 11B",
+                          desc: "...",
+                          link: "Download now",
+                          route: "/download-form11b",
+                          cat: "Documents",
+                          featured: false,
+                        },
+                        {
+                          icon: "✅",
+                          title: "Verify Document",
+                          desc: "...",
+                          link: "Verify certificate",
+                          route: "/verify-document",
+                          cat: "Verification",
+                          featured: false,
+                        },
+                        {
+                          icon: "🔄",
+                          title: "Track Mutation Status",
+                          desc: "...",
+                          link: "Track status",
+                          route: "/track-mutation",
+                          cat: "Verification",
+                          featured: false,
+                        },
+                        {
+                          icon: "🗺️",
+                          title: "Property Map (GIS)",
+                          desc: "...",
+                          link: "View on map",
+                          route: "/property-map",
+                          cat: "Search",
+                          featured: false,
+                        },
+                      ];
   const visibleCards = activeServiceTab === 'All'
     ? serviceCards
     : serviceCards.filter(c => c.cat === activeServiceTab);
@@ -516,11 +557,11 @@ const home = () => {
       <nav className="lp-nav">
         <div className="lp-nav-inner">
           <div className="lp-nav-links">
-            <a className="lp-active" href="#main">Home</a>
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#notices">Notifications</a>
-            <a href="#help">Help &amp; FAQ</a>
+           <a onClick={() => navigate("/")}>Home</a>
+           <a href="#services">Services</a>
+           <a onClick={() => navigate("/about")}>About</a>
+           <a onClick={() => navigate("/notifications")}>Notifications</a>
+           <a onClick={() => navigate("/help")}>Help & FAQ</a>
           </div>
           <div className="lp-nav-right">
             <button className="lp-nav-btn dept" onClick={() => openLogin('dept')}>🏛 Department Login</button>
@@ -742,14 +783,25 @@ const home = () => {
           ))}
         </div>
         <div className="lp-pub-grid">
-          {visibleCards.map(c => (
-            <div key={c.title} className={`lp-pub-card ${c.featured ? 'featured' : ''}`}>
-              <div className="lp-pc-icon">{c.icon}</div>
-              <div className="lp-pc-title">{c.title}</div>
-              <div className="lp-pc-desc">{c.desc}</div>
-              <div className="lp-pc-link">{c.link} <Arrow /></div>
+      {visibleCards.map(c => (
+          <div
+            key={c.title}
+            className={`lp-pub-card ${c.featured ? 'featured' : ''}`}
+            onClick={() => {
+              if (c.route) {
+                navigate(c.route);
+              }
+            }}
+            style={{ cursor: c.route ? 'pointer' : 'default' }}
+          >
+            <div className="lp-pc-icon">{c.icon}</div>
+            <div className="lp-pc-title">{c.title}</div>
+            <div className="lp-pc-desc">{c.desc}</div>
+            <div className="lp-pc-link">
+              {c.link} <Arrow />
             </div>
-          ))}
+          </div>
+        ))}
         </div>
       </section>
 
