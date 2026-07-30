@@ -22,7 +22,7 @@ const AppRoutes = () => {
       
         {/* Landing Page */}
         
-
+<Routes>
         {/* Login */}
         <Route
           path="/login"
@@ -40,6 +40,7 @@ const AppRoutes = () => {
         
           }
         />
+        </Routes>
          </>
           } />
       </Routes>
