@@ -173,12 +173,11 @@ debugger
                 ) : (
                   propertyData.map((row, index) => (
                     <TableRow key={index} style={{ height: '0.1em' }}>
-                      <TableCell align="center" style={{ padding: '0.5em 1em' }}>{row.PROPERTYID}</TableCell>
-                      <TableCell align="center" style={{ padding: '0.5em 1em' }}>{row.OWNERNAME}</TableCell>
-                      <TableCell align="center" style={{ padding: '0.5em 1em' }}>{row.ASSESMENTNUMBER}</TableCell>
-                      <TableCell align="center" style={{ padding: '0.5em 1em' }}>{row.PROPERYCLASSIFICATION}</TableCell>
-                      <TableCell align="center" style={{ padding: '0.5em 1em' }}>{row.PRINTDATE}</TableCell>
-                      <TableCell align="center" style={{ padding: '0.5em 1em' }}>{row.DOCUMENTNO}</TableCell>
+                      <TableCell align="center" style={{ padding: '0.5em 1em' }}>{row.PropertyId}</TableCell>
+                      <TableCell align="center" style={{ padding: '0.5em 1em' }}>{row.OwnerName}</TableCell>
+                      <TableCell align="center" style={{ padding: '0.5em 1em' }}>{row.AssetNumber}</TableCell>
+                      <TableCell align="center" style={{ padding: '0.5em 1em' }}>{row.PropertyClassification}</TableCell>
+                     
                     </TableRow>
                   ))
                 )}
