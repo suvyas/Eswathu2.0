@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '@/api/axios';
 
 const EswathuSearchProperty = () => {
   const [formData, setFormData] = useState({ Search: "" });
@@ -24,18 +25,11 @@ const EswathuSearchProperty = () => {
         console.warn("Please Enter the EPID"); // toast.error replaced temporarily
         return;
       }
-
+debugger
       setloading(true);
 
-      const dummyData = [
-        {
-          PROPERTYID: formData.Search,
-          OWNERNAME: "Test Owner",
-          ASSESMENTNUMBER: "ASN123456",
-          PROPERYCLASSIFICATION: "Residential"
-        }
-      ];
-      setPropertyData(dummyData);
+      const response = await axiosInstance.get(`PropertySearch/GetProperty?propertyId=${formData.Search}`)
+      setPropertyData(response.data.Table1);
 
       setloading(false);
     } catch (ex) {
