@@ -10,14 +10,18 @@ import Footer from "@/components/layout/footer/footer";
 const AppRoutes = () => {
   return (
     <BrowserRouter>
-      <Header />
-    
-      <Routes>
-        {/* Landing Page */}
-        <Route
+    <Routes>
+    <Route
           path="/"
           element={<Home />}
         />
+        <Route path='*' element={
+            <>
+      <Header />
+    
+      
+        {/* Landing Page */}
+        
 
         {/* Login */}
         <Route
@@ -36,6 +40,8 @@ const AppRoutes = () => {
         
           }
         />
+         </>
+          } />
       </Routes>
        
        <Footer />
