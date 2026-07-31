@@ -138,7 +138,7 @@ debugger
   </Button> 
 </Box>*/}
 
-        <Box sx={{ backgroundColor: '#ffffff', padding: 1, borderRadius: 2, mt: 2, width: '100%' }}>
+        <Box sx={{ backgroundColor: '#ffffff', padding: 1, borderRadius: 1, mt: 1, width: '100%' }}>
           <TableContainer component={Paper} sx={{ maxWidth: '100%', margin: '0 auto' }}>
             <Table>
               <TableHead>
@@ -155,12 +155,7 @@ debugger
                   <TableCell align="center" style={{ backgroundColor: '#0276aa', fontWeight: 'bold', color: '#FFFFFF' }}>
                     PROPERYCLASSIFICATION
                   </TableCell>
-                  <TableCell align="center" style={{ backgroundColor: '#0276aa', fontWeight: 'bold', color: '#FFFFFF' }}>
-                    PRINT DATE
-                  </TableCell>
-                  <TableCell align="center" style={{ backgroundColor: '#0276aa', fontWeight: 'bold', color: '#FFFFFF' }}>
-                    DOCUMENT NO
-                  </TableCell>
+                  
                 </TableRow>
               </TableHead>
               <TableBody>
