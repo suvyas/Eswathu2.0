@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import {
   AppBar,
@@ -17,7 +16,6 @@ import {
   useMediaQuery,
   useTheme,
   Divider,
-  Chip,
 } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -26,13 +24,12 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import CloseIcon from '@mui/icons-material/Close';
 import HomeIcon from '@mui/icons-material/Home';
-import LoginIcon from '@mui/icons-material/Login';
 import PersonIcon from '@mui/icons-material/Person';
- 
+
 // ── Import your assets (keep same paths as original) ──
 import bbmplogo from '@/assets/bbmp.png';
 import niclogo from '@/assets/NIC_Logo1-01.png';
- 
+
 // ─────────────────────────────────────────────────────
 //  THEME CONSTANTS  (change once → applies everywhere)
 // ─────────────────────────────────────────────────────
@@ -50,13 +47,13 @@ const COLORS = {
   border:       'rgba(255,255,255,0.12)',
   shadow:       '0 4px 24px rgba(15,43,91,0.35)',
 };
- 
+
 const header = () => {
   const location  = useLocation();
   const theme     = useTheme();
   const isMobile  = useMediaQuery(theme.breakpoints.down('md'));
   const isSmall   = useMediaQuery(theme.breakpoints.down('sm'));
- 
+
   const [mobileOpen,       setMobileOpen]       = useState(false);
   const [openSubMenuId,    setOpenSubMenuId]     = useState(null);
   const [openNestedId,     setOpenNestedId]      = useState(null);
@@ -65,14 +62,14 @@ const header = () => {
   const [subMenuAnchorEl,  setSubMenuAnchorEl]   = useState(null);
   const [scrolled,         setScrolled]          = useState(false);
   const [activeNav,        setActiveNav]         = useState('home');
- 
+
   // ── Scroll detection (adds shadow when scrolled) ──
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 4);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
- 
+
   // ── Menu data (unchanged from original) ──
   const menuItems = {
     0: [
@@ -94,10 +91,10 @@ const header = () => {
       { label: 'Sakala Report',              url: 'https://rdpr.karnataka.gov.in/AA/SakalaTotalRegisteredDueDistrictWise.aspx' },
     ],
   };
- 
+
   // Set menuTitles to [] to hide menu dropdowns (matches original behaviour)
   const menuTitles = [];
- 
+
   // ── Helpers ──
   const handleClick = (event, menu) => { setAnchorEl(event.currentTarget); setSelectedMenu(menu); };
   const handleClose = () => { setAnchorEl(null); setSelectedMenu(null); setSubMenuAnchorEl(null); };
@@ -106,7 +103,7 @@ const header = () => {
   const handleNestedClick  = id => setOpenNestedId(openNestedId   === id ? null : id);
   const handleRedirect  = url => { window.open(url, '_blank');    if (isMobile) setMobileOpen(false); };
   const handleRefresh   = url => { window.location.href = url;   if (isMobile) setMobileOpen(false); };
- 
+
   // ── Drawer (mobile) ──
   const drawer = (
     <Box sx={{ width: 300, height: '100%', display: 'flex', flexDirection: 'column', bgcolor: COLORS.primaryDark }}>
@@ -128,62 +125,60 @@ const header = () => {
           <CloseIcon />
         </IconButton>
       </Box>
- 
-     
-        {/* Home */}
-        <ListItem
-          button
-          onClick={() => handleRefresh('https://eswathu.karnataka.gov.in/citizen_core')}
-          sx={drawerItemSx}
-        >
-          <HomeIcon sx={{ mr: 1.5, fontSize: 18, color: COLORS.accentLight }} />
-          <ListItemText primary="ಮುಖಪುಟ" primaryTypographyProps={{ sx: drawerLabelSx }} />
-        </ListItem>
- 
-        {/* Dynamic menu items */}
-        {menuTitles.map((title, index) => (
-          <React.Fragment key={index}>
-            <ListItem button onClick={() => handleSubMenuClick(index)} sx={drawerItemSx}>
-              <ListItemText primary={title} primaryTypographyProps={{ sx: drawerLabelSx }} />
-              {openSubMenuId === index
-                ? <ExpandLess sx={{ color: COLORS.accentLight }} />
-                : <ExpandMore  sx={{ color: COLORS.textMuted }}  />}
-            </ListItem>
-            <Collapse in={openSubMenuId === index} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                {menuItems[index]?.map((item, idx) => (
-                  <React.Fragment key={idx}>
-                    {item.subMenu ? (
-                      <>
-                        <ListItem button sx={{ ...drawerItemSx, pl: 4 }} onClick={() => handleNestedClick(`${index}-${idx}`)}>
-                          <ListItemText primary={item.label} primaryTypographyProps={{ sx: { ...drawerLabelSx, fontSize: 13 } }} />
-                          {openNestedId === `${index}-${idx}` ? <ExpandLess sx={{ color: COLORS.accentLight, fontSize: 18 }} /> : <ExpandMore sx={{ color: COLORS.textMuted, fontSize: 18 }} />}
-                        </ListItem>
-                        <Collapse in={openNestedId === `${index}-${idx}`} timeout="auto" unmountOnExit>
-                          <List component="div" disablePadding>
-                            {item.subMenu.map((sub, si) => (
-                              <ListItem button key={si} sx={{ ...drawerItemSx, pl: 6 }} onClick={() => handleRedirect(sub.url)}>
-                                <ListItemText primary={sub.label} primaryTypographyProps={{ sx: { ...drawerLabelSx, fontSize: 12 } }} />
-                              </ListItem>
-                            ))}
-                          </List>
-                        </Collapse>
-                      </>
-                    ) : (
-                      <ListItem button sx={{ ...drawerItemSx, pl: 4 }} onClick={() => handleRedirect(item.url)}>
+
+      {/* Home */}
+      <ListItem
+        button
+        onClick={() => handleRefresh('https://eswathu.karnataka.gov.in/citizen_core')}
+        sx={drawerItemSx}
+      >
+        <HomeIcon sx={{ mr: 1.5, fontSize: 18, color: COLORS.accentLight }} />
+        <ListItemText primary="ಮುಖಪುಟ" primaryTypographyProps={{ sx: drawerLabelSx }} />
+      </ListItem>
+
+      {/* Dynamic menu items */}
+      {menuTitles.map((title, index) => (
+        <React.Fragment key={index}>
+          <ListItem button onClick={() => handleSubMenuClick(index)} sx={drawerItemSx}>
+            <ListItemText primary={title} primaryTypographyProps={{ sx: drawerLabelSx }} />
+            {openSubMenuId === index
+              ? <ExpandLess sx={{ color: COLORS.accentLight }} />
+              : <ExpandMore  sx={{ color: COLORS.textMuted }}  />}
+          </ListItem>
+          <Collapse in={openSubMenuId === index} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              {menuItems[index]?.map((item, idx) => (
+                <React.Fragment key={idx}>
+                  {item.subMenu ? (
+                    <>
+                      <ListItem button sx={{ ...drawerItemSx, pl: 4 }} onClick={() => handleNestedClick(`${index}-${idx}`)}>
                         <ListItemText primary={item.label} primaryTypographyProps={{ sx: { ...drawerLabelSx, fontSize: 13 } }} />
+                        {openNestedId === `${index}-${idx}` ? <ExpandLess sx={{ color: COLORS.accentLight, fontSize: 18 }} /> : <ExpandMore sx={{ color: COLORS.textMuted, fontSize: 18 }} />}
                       </ListItem>
-                    )}
-                  </React.Fragment>
-                ))}
-              </List>
-            </Collapse>
-          </React.Fragment>
-        ))}
- 
-        <Divider sx={{ borderColor: COLORS.border, my: 1 }} />
- 
-       
+                      <Collapse in={openNestedId === `${index}-${idx}`} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                          {item.subMenu.map((sub, si) => (
+                            <ListItem button key={si} sx={{ ...drawerItemSx, pl: 6 }} onClick={() => handleRedirect(sub.url)}>
+                              <ListItemText primary={sub.label} primaryTypographyProps={{ sx: { ...drawerLabelSx, fontSize: 12 } }} />
+                            </ListItem>
+                          ))}
+                        </List>
+                      </Collapse>
+                    </>
+                  ) : (
+                    <ListItem button sx={{ ...drawerItemSx, pl: 4 }} onClick={() => handleRedirect(item.url)}>
+                      <ListItemText primary={item.label} primaryTypographyProps={{ sx: { ...drawerLabelSx, fontSize: 13 } }} />
+                    </ListItem>
+                  )}
+                </React.Fragment>
+              ))}
+            </List>
+          </Collapse>
+        </React.Fragment>
+      ))}
+
+      <Divider sx={{ borderColor: COLORS.border, my: 1 }} />
+
       {/* Drawer footer */}
       <Box sx={{ p: 2, borderTop: `1px solid ${COLORS.border}` }}>
         <Typography sx={{ color: COLORS.textDim, fontSize: 10.5, textAlign: 'center', lineHeight: 1.6 }}>
@@ -192,7 +187,7 @@ const header = () => {
       </Box>
     </Box>
   );
- 
+
   // ─────────────────────────────────────────────────────
   //  RENDER
   // ─────────────────────────────────────────────────────
@@ -224,35 +219,37 @@ const header = () => {
           <Box component="button" sx={accBtnSx}>English</Box>
         </Box>
       </Box>
- 
-      {/* ── GOVT HEADER BAND ── */}
+
+      {/* ── MERGED HEADER (govt branding + CM & Minister, one panel) ── */}
       <Box sx={{
         bgcolor: '#fff', borderBottom: `5px solid ${COLORS.primary}`,
-        px: { xs: 1.5, md: 3 }, py: { xs: 1.5, md: 1.5 },
+        px: { xs: 1.5, md: 3 }, py: { xs: 2, md: 2.5 },
       }}>
         <Box sx={{
           maxWidth: 1200, mx: 'auto',
-          display: 'grid',
-          gridTemplateColumns: { xs: '56px 1fr 56px', sm: '72px 1fr 72px', md: '90px 1fr 90px' },
-          alignItems: 'center',
-          gap: { xs: 1, md: 1.5 },
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          flexWrap: 'wrap', gap: 2.5,
         }}>
- 
-          {/* LEFT — India emblem / BBMP logo */}
-          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.4 }}>
-            <Box
-              component="img"
-              src={bbmplogo}
-              alt="Karnataka Emblem"
-              sx={{ width: { xs: 48, md: 64 }, height: { xs: 54, md: 70 }, objectFit: 'contain' }}
-            />
-            <Typography sx={{ fontSize: 7.5, color: '#666', textAlign: 'center', lineHeight: 1.3 }}>
-              ಕರ್ನಾಟಕ ಸರ್ಕಾರ<br />Govt. of Karnataka
-            </Typography>
+          {/* LEFT — CM photo (name below) + Karnataka emblem */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexShrink: 0 }}>
+            {!isMobile && (
+              <MinisterCard name="Shri D.K. Shivakumar" role="Hon'ble Chief Minister" />
+            )}
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.4 }}>
+              <Box
+                component="img"
+                src={bbmplogo}
+                alt="Karnataka Emblem"
+                sx={{ width: { xs: 48, md: 66 }, height: { xs: 54, md: 74 }, objectFit: 'contain' }}
+              />
+              <Typography sx={{ fontSize: 7.5, color: '#666', textAlign: 'center', lineHeight: 1.3 }}>
+                ಕರ್ನಾಟಕ ಸರ್ಕಾರ<br />Govt. of Karnataka
+              </Typography>
+            </Box>
           </Box>
- 
+
           {/* CENTER — Portal branding */}
-          <Box sx={{ textAlign: 'center' }}>
+          <Box sx={{ textAlign: 'center', flex: 1, minWidth: 220 }}>
             <Typography sx={{ fontSize: { xs: 9.5, sm: 10.5 }, color: '#777', mb: 0.3, letterSpacing: 0.2 }}>
               ಗ್ರಾಮೀಣಾಭಿವೃದ್ಧಿ ಮತ್ತು ಪಂಚಾಯತ್ ರಾಜ್ ಇಲಾಖೆ, ಕರ್ನಾಟಕ ಸರ್ಕಾರ
             </Typography>
@@ -276,10 +273,9 @@ const header = () => {
               </Typography>
             )}
           </Box>
- 
-          {/* RIGHT — Digital India + NIC logo */}
-          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.8 }}>
-            {/* Digital India tricolor badge */}
+
+          {/* RIGHT — Digital India badge + NIC logo + Minister photo (name below) */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexShrink: 0 }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.4 }}>
               <Box sx={{
                 width: 40, height: 26,
@@ -300,76 +296,13 @@ const header = () => {
               alt="NIC Logo"
               sx={{ width: { xs: 46, md: 62 }, height: { xs: 28, md: 36 }, objectFit: 'contain', bgcolor: '#fff', borderRadius: 0.5 }}
             />
+            {!isMobile && (
+              <MinisterCard name="Shri Priyank Kharge" role="Hon'ble Minister, RDPR" />
+            )}
           </Box>
         </Box>
       </Box>
- 
-      {/* ── MINISTER STRIP ── */}
-      <Box sx={{
-        background: `linear-gradient(120deg, ${COLORS.primaryDark} 0%, ${COLORS.primary} 50%, ${COLORS.primaryLight} 100%)`,
-        position: 'relative', overflow: 'hidden',
-        '&::before': {
-          content: '""', position: 'absolute', inset: 0,
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
-          backgroundSize: '20px 20px',
-        },
-      }}>
-        <Box sx={{
-          maxWidth: 1200, mx: 'auto',
-          display: 'flex', alignItems: 'stretch', flexWrap: 'wrap',
-          position: 'relative', zIndex: 1,
-        }}>
-          {/* CM left */}
-          <MinisterCard
-            name="Shri D.K. Shivakumar"
-            role={<>Hon'ble Chief Minister<br />Government of Karnataka</>}
-            side="left"
-            isMobile={isMobile}
-          />
- 
-          {/* Center stats */}
-          <Box sx={{
-            flex: 1, display: 'flex', flexDirection: 'column',
-            alignItems: 'center', justifyContent: 'center',
-            py: { xs: 1.5, md: 2 }, px: 2, textAlign: 'center', gap: 0.8,
-          }}>
-            <Chip
-              label="📋 RDPR Karnataka · NIC · Digital India"
-              size="small"
-              sx={{
-                bgcolor: 'rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.82)',
-                fontSize: 10.5, fontWeight: 600, letterSpacing: 0.4,
-                border: '1px solid rgba(255,255,255,0.2)', height: 24,
-              }}
-            />
-            <Typography sx={{
-              fontSize: { xs: 16, md: 20 }, fontWeight: 800, color: COLORS.accentLight, lineHeight: 1.1,
-            }}>
-              e-Swathu Property Portal
-            </Typography>
-            <Typography sx={{ fontSize: 11, color: 'rgba(255,255,255,0.50)' }}>
-              ಗ್ರಾಮ ಪಂಚಾಯತ್ ಆಸ್ತಿ ದಾಖಲಾತಿ ವ್ಯವಸ್ಥೆ
-            </Typography>
-            <Box sx={{ display: 'flex', gap: { xs: 2, md: 3 }, flexWrap: 'wrap', justifyContent: 'center' }}>
-              {[['2.4 Cr+','Properties'],['6,022','Gram Panchayats'],['31','Districts'],['18 L+','Documents']].map(([n,l]) => (
-                <Box key={l} sx={{ textAlign: 'center' }}>
-                  <Typography sx={{ fontSize: { xs: 15, md: 18 }, fontWeight: 900, color: COLORS.accentLight, lineHeight: 1 }}>{n}</Typography>
-                  <Typography sx={{ fontSize: 10, color: 'rgba(255,255,255,0.45)', mt: 0.3 }}>{l}</Typography>
-                </Box>
-              ))}
-            </Box>
-          </Box>
- 
-          {/* Minister right */}
-          <MinisterCard
-            name="Shri Priyank Kharge"
-            role={<>Hon'ble Minister, RDPR<br />IT/BT &amp; e-Governance, GoK</>}
-            side="right"
-            isMobile={isMobile}
-          />
-        </Box>
-      </Box>
- 
+
       {/* ── STICKY NAV BAR ── */}
       <AppBar
         position="sticky"
@@ -420,7 +353,7 @@ const header = () => {
                 onClick={() => { setActiveNav('home'); handleRefresh('https://eswathu.karnataka.gov.in/citizen_core'); }}
                 accent={COLORS.accentLight}
               />
- 
+
               {/* Dynamic dropdown menus */}
               {menuTitles.map((item, index) => (
                 <Box key={index}>
@@ -456,14 +389,14 @@ const header = () => {
                   </Menu>
                 </Box>
               ))}
- 
+
               {/* Spacer */}
               <Box sx={{ flex: 1 }} />
             </>
           )}
         </Toolbar>
       </AppBar>
- 
+
       {/* ── TICKER / NEWS BAR ── */}
       <Box sx={{
         bgcolor: '#fef3c7',
@@ -494,7 +427,7 @@ const header = () => {
           Form 9 &amp; Form 11B free to download — no login required
         </Box>
       </Box>
- 
+
       {/* ── MOBILE DRAWER ── */}
       <Drawer
         variant="temporary"
@@ -511,55 +444,39 @@ const header = () => {
     </>
   );
 };
- 
+
 // ─────────────────────────────────────────────────────
-//  MINISTER CARD  (sub-component)
+//  MINISTER CARD  (sub-component) — photo above name, matches Home.jsx layout
 // ─────────────────────────────────────────────────────
-const MinisterCard = ({ name, role, side, isMobile }) => {
-  if (isMobile) return null; // hide on mobile — minister strip stacks
- 
-  const borderStyle = side === 'left'
-    ? { borderRight: '1px solid rgba(255,255,255,0.12)' }
-    : { borderLeft:  '1px solid rgba(255,255,255,0.12)' };
- 
-  return (
+const MinisterCard = ({ name, role }) => (
+  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.6, flexShrink: 0 }}>
     <Box sx={{
-      display: 'flex', alignItems: 'center', gap: 1.5,
-      py: 1.5, px: 2.5,
-      background: 'rgba(0,0,0,0.14)',
-      minWidth: 200, flexShrink: 0,
-      ...borderStyle,
+      width: 64, height: 78, borderRadius: 1.5,
+      border: '2.5px solid #f5c040',
+      overflow: 'hidden', flexShrink: 0,
+      background: 'linear-gradient(160deg,#1a3a70,#0a1e42)',
+      display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+      boxShadow: '0 4px 12px rgba(15,43,91,0.25)',
     }}>
-      {/* Illustrated avatar placeholder */}
-      <Box sx={{
-        width: 72, height: 86, borderRadius: 1.5,
-        border: `2.5px solid #f5c040`,
-        overflow: 'hidden', flexShrink: 0,
-        background: 'linear-gradient(160deg,#1a3a70,#0a1e42)',
-        display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
-        boxShadow: '0 4px 14px rgba(0,0,0,0.3)',
-      }}>
-        {/* Simple silhouette placeholder — replace with <img> when real photo available */}
-        <svg viewBox="0 0 72 86" fill="none" width="72" height="86">
-          <ellipse cx="36" cy="34" rx="16" ry="18" fill="#c8a080" />
-          <path d="M8 86 Q8 62 36 55 Q64 62 64 86Z" fill="#1a1a2a" />
-          <path d="M20 86 Q8 70 4 80Z" fill="#e8a020" opacity=".35" />
-          <path d="M52 86 Q64 70 68 80Z" fill="#e8a020" opacity=".35" />
-        </svg>
-      </Box>
- 
-      <Box>
-        <Typography sx={{ fontSize: 12.5, fontWeight: 700, color: '#fff', lineHeight: 1.3, mb: 0.3 }}>
-          {name}
-        </Typography>
-        <Typography sx={{ fontSize: 10.5, color: 'rgba(255,255,255,0.58)', lineHeight: 1.4 }}>
-          {role}
-        </Typography>
-      </Box>
+      {/* Simple silhouette placeholder — replace with <img> when real photo available */}
+      <svg viewBox="0 0 72 86" width="64" height="78" fill="none">
+        <ellipse cx="36" cy="34" rx="16" ry="18" fill="#c8a080" />
+        <path d="M8 86 Q8 62 36 55 Q64 62 64 86Z" fill="#1a1a2a" />
+        <path d="M20 86 Q8 70 4 80Z" fill="#e8a020" opacity=".35" />
+        <path d="M52 86 Q64 70 68 80Z" fill="#e8a020" opacity=".35" />
+      </svg>
     </Box>
-  );
-};
- 
+    <Box sx={{ textAlign: 'center' }}>
+      <Typography sx={{ fontSize: 12, fontWeight: 700, color: COLORS.primary, lineHeight: 1.25, whiteSpace: 'nowrap' }}>
+        {name}
+      </Typography>
+      <Typography sx={{ fontSize: 10, color: '#64748B', lineHeight: 1.3, whiteSpace: 'nowrap' }}>
+        {role}
+      </Typography>
+    </Box>
+  </Box>
+);
+
 // ─────────────────────────────────────────────────────
 //  DESKTOP NAV BUTTON  (sub-component)
 // ─────────────────────────────────────────────────────
@@ -581,7 +498,7 @@ const NavButton = ({ label, icon, active, onClick, accent }) => (
     {icon}{label}
   </Button>
 );
- 
+
 // ─────────────────────────────────────────────────────
 //  SHARED STYLE OBJECTS
 // ─────────────────────────────────────────────────────
@@ -595,7 +512,7 @@ const navBtnSx = (active, accent) => ({
   '&:hover': { color: '#fff', bgcolor: 'rgba(255,255,255,0.08)', borderBottomColor: accent },
   transition: 'all .15s',
 });
- 
+
 const drawerItemSx = {
   py: 1.2, px: 2.5,
   display: 'flex', alignItems: 'center',
@@ -603,12 +520,12 @@ const drawerItemSx = {
   '&:hover': { bgcolor: 'rgba(255,255,255,0.07)' },
   transition: 'background .15s',
 };
- 
+
 const drawerLabelSx = {
   fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.85)',
   fontFamily: 'Inter,Segoe UI,sans-serif',
 };
- 
+
 const accBtnSx = {
   bgcolor: 'transparent',
   border: '1px solid #1a3a5a',
@@ -621,5 +538,5 @@ const accBtnSx = {
   '&:hover': { bgcolor: '#0f2b5b', color: '#fff', borderColor: '#0f2b5b' },
   transition: 'all .15s',
 };
- 
+
 export default header;

@@ -1,4 +1,3 @@
-
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -45,89 +44,60 @@ const CSS = `
 }
 .lp-acc-btn:hover{background:rgba(255,255,255,.15);color:#fff}
 
-/* ── GOVT HEADER ── */
-.lp-govhdr{
+/* ── MERGED HEADER (govt branding + CM/Minister, one panel, same white bg) ── */
+.lp-hdr-merged{
   background:#fff;border-bottom:5px solid #2563EB;
-  padding:10px 24px;
+  padding:20px 24px;
 }
-.lp-govhdr-in{
+.lp-hdr-merged-in{
   max-width:1280px;margin:0 auto;
-  display:grid;grid-template-columns:80px 1fr 120px;
-  align-items:center;gap:12px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:22px;flex-wrap:wrap;
 }
+.lp-hdr-side{display:flex;align-items:center;gap:18px;flex-shrink:0}
+.lp-hdr-mini{display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0}
+.lp-hdr-photo{
+  width:66px;height:80px;border-radius:8px;
+  border:2.5px solid #FFC72C;overflow:hidden;flex-shrink:0;
+  box-shadow:0 4px 12px rgba(30,58,138,.2);
+}
+.lp-hdr-person{display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.25;text-align:center}
+.lp-hdr-person-name{font-size:12px;font-weight:700;color:#1E293B;white-space:nowrap}
+.lp-hdr-person-role{font-size:10px;color:#64748B;white-space:nowrap}
+
 .lp-emb{display:flex;flex-direction:column;align-items:center;gap:3px}
 .lp-emb-cap{font-size:8px;color:#666;text-align:center;line-height:1.3;max-width:76px}
 .lp-brand{text-align:center}
 .lp-brand-dept{font-size:10.5px;color:#64748B;margin-bottom:2px;letter-spacing:.2px}
 .lp-brand-name{
-  font-size:clamp(26px,5vw,42px);font-weight:900;
+  font-size:clamp(24px,4.5vw,38px);font-weight:900;
   color:#1D4ED8;letter-spacing:-1.2px;line-height:1;
 }
 .lp-brand-kn{
-  font-size:clamp(12px,2.5vw,16px);font-weight:700;
+  font-size:clamp(11px,2.2vw,15px);font-weight:700;
   color:#1E3A8A;margin-top:4px;
 }
 .lp-brand-sub{font-size:10.5px;color:#64748B;margin-top:3px}
-.lp-hdr-right{display:flex;align-items:center;gap:10px;justify-content:flex-end}
 .lp-di-badge{display:flex;flex-direction:column;align-items:center;gap:3px}
 .lp-di-flag{
-  width:42px;height:28px;border-radius:4px;border:1px solid #e2e8f0;overflow:hidden;
+  width:38px;height:25px;border-radius:4px;border:1px solid #e2e8f0;overflow:hidden;
   background:linear-gradient(180deg,#FF9933 33.3%,#fff 33.3%,#fff 66.6%,#138808 66.6%);
   display:flex;align-items:center;justify-content:center;position:relative;
 }
 .lp-di-chakra{
-  width:12px;height:12px;border-radius:50%;
+  width:11px;height:11px;border-radius:50%;
   border:1.5px solid #000080;position:absolute;
 }
-.lp-di-text{font-size:8.5px;color:#334155;font-weight:700;letter-spacing:.4px;text-align:center}
-
-/* ── MINISTER STRIP ── */
-.lp-min{
-  background:linear-gradient(130deg,#1E3A8A 0%,#1D4ED8 40%,#2563EB 70%,#3B82F6 100%);
-  position:relative;overflow:hidden;
+.lp-di-text{font-size:8px;color:#334155;font-weight:700;letter-spacing:.4px;text-align:center}
+.lp-nic-badge{display:flex;flex-direction:column;align-items:center;gap:3px}
+.lp-nic-icon{
+  width:38px;height:25px;border-radius:4px;
+  background:linear-gradient(135deg,#1E3A8A,#2563EB);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.3px;
+  border:1px solid #e2e8f0;
 }
-.lp-min::before{
-  content:'';position:absolute;inset:0;
-  background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);
-  background-size:22px 22px;pointer-events:none;
-}
-.lp-min-in{
-  max-width:1280px;margin:0 auto;
-  display:flex;align-items:stretch;flex-wrap:wrap;position:relative;z-index:1;
-}
-.lp-mp{
-  display:flex;align-items:center;gap:14px;
-  padding:14px 28px;background:rgba(0,0,0,.14);
-  flex-shrink:0;min-width:210px;
-}
-.lp-mp.left{border-right:1px solid rgba(255,255,255,.12)}
-.lp-mp.right{border-left:1px solid rgba(255,255,255,.12)}
-.lp-mp-img{
-  width:78px;height:93px;border-radius:8px;
-  border:3px solid #FFC72C;
-  box-shadow:0 6px 20px rgba(0,0,0,.3);
-  overflow:hidden;flex-shrink:0;
-}
-.lp-mp-name{font-size:12.5px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:3px}
-.lp-mp-role{font-size:10.5px;color:rgba(255,255,255,.6);line-height:1.45}
-.lp-mc{
-  flex:1;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:16px 24px;text-align:center;gap:9px;
-}
-.lp-mc-tag{
-  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
-  color:rgba(255,255,255,.82);font-size:10.5px;padding:4px 16px;
-  border-radius:20px;letter-spacing:.5px;font-weight:600;
-}
-.lp-mc-title{
-  font-size:clamp(16px,3vw,22px);font-weight:800;
-  color:#FFC72C;line-height:1.1;
-}
-.lp-mc-sub{font-size:11px;color:rgba(255,255,255,.48)}
-.lp-mc-stats{display:flex;gap:24px;flex-wrap:wrap;justify-content:center}
-.lp-mst strong{display:block;font-size:18px;font-weight:900;color:#FFC72C;line-height:1}
-.lp-mst span{font-size:10px;color:rgba(255,255,255,.45);margin-top:2px;display:block}
+.lp-nic-text{font-size:8px;color:#334155;font-weight:700;letter-spacing:.3px;text-align:center;max-width:60px}
 
 /* ── STICKY NAV ── */
 .lp-nav{
@@ -222,7 +192,19 @@ const CSS = `
   background:radial-gradient(circle,rgba(255,199,44,.1),transparent 70%);
   bottom:-60px;left:-40px;pointer-events:none;
 }
-.lp-hero-in{max-width:1280px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.lp-hero-in{
+  max-width:1280px;margin:0 auto;position:relative;z-index:1;
+  display:grid;grid-template-columns:1.25fr 1fr;gap:36px;align-items:center;text-align:left;
+}
+.lp-hero-left{display:flex;flex-direction:column;align-items:flex-start}
+.lp-hero-right{
+  background:#fff;border:1.5px solid #BFDBFE;border-radius:14px;
+  padding:18px 18px 14px;box-shadow:0 10px 30px rgba(37,99,235,.14);
+}
+.lp-hero-right-title{
+  font-size:11px;font-weight:700;color:#1D4ED8;
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;
+}
 .lp-hero-badge{
   display:inline-flex;align-items:center;gap:8px;
   background:linear-gradient(135deg,#1D4ED8,#3B82F6);
@@ -247,13 +229,13 @@ const CSS = `
 }
 .lp-hero-desc{
   font-size:14px;color:#475569;line-height:1.78;
-  max-width:600px;margin:0 auto 30px;
+  max-width:100%;margin:0 0 30px;
 }
 /* SEARCH */
 .lp-srch{
   background:#fff;border:1.5px solid #BFDBFE;border-radius:10px;
   padding:6px 6px 6px 16px;display:flex;align-items:center;gap:8px;
-  max-width:620px;margin:0 auto;
+  max-width:100%;margin:0;width:100%;
   box-shadow:0 4px 20px rgba(37,99,235,.1);
   flex-wrap:wrap;
 }
@@ -275,7 +257,15 @@ const CSS = `
   box-shadow:0 3px 12px rgba(37,99,235,.35);
 }
 .lp-srch-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,.45)}
-.lp-srch-note{font-size:11px;color:#94A3B8;margin-top:10px;text-align:center}
+.lp-srch-note{font-size:11px;color:#94A3B8;margin-top:10px;text-align:left}
+.lp-hero-quick{display:flex;flex-direction:column;gap:9px}
+.lp-hq-item{
+  background:#fff;border:1.5px solid #DBEAFE;border-radius:9px;
+  padding:11px 14px;display:flex;align-items:center;gap:9px;
+  cursor:pointer;font-size:13px;font-weight:600;color:#1E293B;transition:.15s;
+}
+.lp-hq-item:hover{border-color:#2563EB;background:#EEF5FF;box-shadow:0 4px 14px rgba(37,99,235,.12);transform:translateX(3px)}
+.lp-hq-ico{font-size:16px}
 
 /* ── STATS ── */
 .lp-stats{background:linear-gradient(135deg,#1E3A8A,#1D4ED8);padding:22px 24px}
@@ -327,11 +317,22 @@ const CSS = `
 .lp-svc{padding:56px 24px;max-width:1280px;margin:0 auto}
 .lp-sec-hdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:10px}
 .lp-see-all{font-size:13px;color:#2563EB;font-weight:700;text-decoration:none;border-bottom:1px solid #2563EB;cursor:pointer}
+/* compact header row: small label on one side, tabs on the other */
+.lp-sec-hdr-compact{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;margin-bottom:20px;flex-wrap:wrap;
+}
+.lp-sec-hdr-mini{display:flex;flex-direction:column;gap:2px}
+.lp-eye-mini{
+  font-size:10px;font-weight:700;color:#1D4ED8;
+  letter-spacing:1px;text-transform:uppercase;
+}
+.lp-sec-h-mini{font-size:12.5px;color:#64748B;font-weight:600}
 /* tabs */
 .lp-tabs{
   display:flex;gap:0;border:1.5px solid #BFDBFE;
   border-radius:8px;overflow:hidden;width:fit-content;
-  margin-bottom:24px;flex-wrap:wrap;
+  margin-bottom:0;flex-wrap:wrap;
 }
 .lp-tab{
   padding:9px 22px;font-size:13px;font-weight:500;color:#64748B;
@@ -466,13 +467,16 @@ const CSS = `
   .lp-about-in,.lp-notices{grid-template-columns:1fr}
   .lp-portals-grid{grid-template-columns:repeat(2,1fr)}
   .lp-grid{grid-template-columns:repeat(2,1fr)}
-  .lp-govhdr-in{grid-template-columns:64px 1fr 96px;gap:8px}
-  .lp-min-in{flex-direction:column}
-  .lp-mp.left,.lp-mp.right{border:none;border-bottom:1px solid rgba(255,255,255,.1);min-width:unset;width:100%}
+  .lp-hdr-merged-in{flex-direction:column;text-align:center}
+  .lp-hdr-side{justify-content:center}
+  .lp-hero-in{grid-template-columns:1fr}
+  .lp-hero-left{align-items:center;text-align:center}
+  .lp-hero-desc{margin:0 auto 30px}
+  .lp-srch-note{text-align:center}
 }
 @media(max-width:700px){
-  .lp-govhdr-in{grid-template-columns:54px 1fr 80px;gap:6px}
   .lp-brand-sub{display:none}
+  .lp-hdr-person-role,.lp-emb-cap{display:none}
   .lp-nav-links,.lp-nav-right{display:none}
   .lp-burger{display:block}
   .lp-stats-in{grid-template-columns:repeat(2,1fr)}
@@ -480,6 +484,7 @@ const CSS = `
   .lp-st:nth-child(3){border-right:1px solid rgba(255,255,255,.1)}
   .lp-tabs{width:100%}
   .lp-tab{flex:1;text-align:center;padding:9px 8px;font-size:12px}
+  .lp-sec-hdr-compact{flex-direction:column;align-items:stretch}
 }
 @media(max-width:500px){
   .lp-grid{grid-template-columns:1fr}
@@ -619,7 +624,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const [mobNavOpen, setMobNavOpen] = useState(false);
-  const [activeTab, setActiveTab]   = useState('All');
+  const [activeTab, setActiveTab]   = useState('Documents');
   const [searchQ, setSearchQ]       = useState('');
   const [searchD, setSearchD]       = useState('');
   const [activeNav, setActiveNav]   = useState('home');
@@ -637,7 +642,14 @@ const Home = () => {
   const addRef = el => { if (el && !fadeRefs.current.includes(el)) fadeRefs.current.push(el); };
 
   /* ── DATA ── */
-  const serviceTabs = ['All','Documents','Search','Verification','Citizen Services'];
+  const quickLinks = [
+    { icon:'🔍', label:'Search Property',  route:'/EswathuSearchProperty' },
+    { icon:'📄', label:'Download Form 9',  route:'/download-form9' },
+    { icon:'🔄', label:'Track Mutation',   route:'/track-mutation' },
+    { icon:'🏡', label:'Get e-Khata',      route:'/propertylist' },
+  ];
+
+  const serviceTabs = ['Documents','Search','Verification','Citizen Services'];
 
   const serviceCards = [
     { icon:'🔍', title:'Search Property',        desc:'Search by District, Taluk, GP, Village, and Property ID or owner name. Free and instant — no login needed.',  link:'Go to search',       route:'/EswathuSearchProperty',     cat:'Search',          featured:true  },
@@ -672,7 +684,7 @@ const Home = () => {
     PROTECTED.has(route) ? navigate('/login', { state:{ from:route } }) : navigate(route);
   };
 
-  const visible = activeTab === 'All' ? serviceCards : serviceCards.filter(c => c.cat === activeTab);
+  const visible = serviceCards.filter(c => c.cat === activeTab);
 
   const notifications = [
     { text:'e-Swathu 2.0 — Now Live',      sub:'Digital signatures and QR codes enabled on all new property documents across the state.',        dot:'#FFC72C' },
@@ -714,62 +726,52 @@ const Home = () => {
         </div>
       </div>
 
-      {/* ── GOVT HEADER ── */}
-      <div className="lp-govhdr">
-        <div className="lp-govhdr-in">
-          <div className="lp-emb">
-            <IndiaEmblem />
-            <div className="lp-emb-cap">भारत सरकार<br/>Govt. of India</div>
+      {/* ── MERGED HEADER (govt branding + CM & Minister photos, one panel) ── */}
+      <div className="lp-hdr-merged">
+        <div className="lp-hdr-merged-in">
+          {/* Left cluster: CM photo (name below) + India emblem */}
+          <div className="lp-hdr-side">
+            <div className="lp-hdr-mini">
+              <div className="lp-hdr-photo"><CMPortrait /></div>
+              <div className="lp-hdr-person">
+                <span className="lp-hdr-person-name">Shri D.K. Shivakumar</span>
+                <span className="lp-hdr-person-role">Hon'ble Chief Minister</span>
+              </div>
+            </div>
+            <div className="lp-emb">
+              <IndiaEmblem />
+              <div className="lp-emb-cap">भारत सरकार<br/>Govt. of India</div>
+            </div>
           </div>
+
+          {/* Center brand */}
           <div className="lp-brand">
             <div className="lp-brand-dept">ಗ್ರಾಮೀಣಾಭಿವೃದ್ಧಿ ಮತ್ತು ಪಂಚಾಯತ್ ರಾಜ್ ಇಲಾಖೆ, ಕರ್ನಾಟಕ ಸರ್ಕಾರ</div>
             <div className="lp-brand-name">e-Swathu</div>
             <div className="lp-brand-kn">ಇ-ಸ್ವತ್ತು &nbsp;·&nbsp; ಗ್ರಾಮೀಣ ಆಸ್ತಿ ದಾಖಲಾತಿ ವ್ಯವಸ್ಥೆ</div>
             <div className="lp-brand-sub">Rural Development &amp; Panchayat Raj Dept. · Government of Karnataka</div>
           </div>
-          <div className="lp-hdr-right">
+
+          {/* Right cluster: DI badge + Karnataka emblem + Minister photo (name below) */}
+          <div className="lp-hdr-side">
             <div className="lp-di-badge">
               <div className="lp-di-flag"><div className="lp-di-chakra"/></div>
               <div className="lp-di-text">DIGITAL INDIA</div>
+            </div>
+            <div className="lp-nic-badge">
+              <div className="lp-nic-icon">NIC</div>
+              <div className="lp-nic-text">National Informatics Centre</div>
             </div>
             <div className="lp-emb" style={{alignItems:'center'}}>
               <KarnatakaEmblem />
               <div className="lp-emb-cap">ಕರ್ನಾಟಕ ಸರ್ಕಾರ<br/>Govt. of Karnataka</div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── MINISTER STRIP ── */}
-      <div className="lp-min">
-        <div className="lp-min-in">
-          {/* CM Left */}
-          <div className="lp-mp left">
-            <div className="lp-mp-img"><CMPortrait /></div>
-            <div>
-              <div className="lp-mp-name">Shri D.K. Shivakumar</div>
-              <div className="lp-mp-role">Hon'ble Chief Minister<br/>Government of Karnataka</div>
-            </div>
-          </div>
-          {/* Center */}
-          <div className="lp-mc">
-            <div className="lp-mc-tag">📋 RDPR Karnataka · NIC · Digital India</div>
-            <div className="lp-mc-title">e-Swathu Property Portal</div>
-            <div className="lp-mc-sub">ಗ್ರಾಮ ಪಂಚಾಯತ್ ಆಸ್ತಿ ದಾಖಲಾತಿ ವ್ಯವಸ್ಥೆ</div>
-            <div className="lp-mc-stats">
-              {[['2.4 Cr+','Properties'],['6,022','Gram Panchayats'],['31','Districts'],['18 L+','Documents']].map(([n,l]) => (
-                <div className="lp-mst" key={l}>
-                  <strong>{n}</strong><span>{l}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* Minister Right */}
-          <div className="lp-mp right">
-            <div className="lp-mp-img"><MinisterPortrait /></div>
-            <div>
-              <div className="lp-mp-name">Shri Priyank Kharge</div>
-              <div className="lp-mp-role">Hon'ble Minister, RDPR<br/>IT/BT &amp; e-Governance, GoK</div>
+            <div className="lp-hdr-mini">
+              <div className="lp-hdr-photo"><MinisterPortrait /></div>
+              <div className="lp-hdr-person">
+                <span className="lp-hdr-person-name">Shri Priyank Kharge</span>
+                <span className="lp-hdr-person-role">Hon'ble Minister, RDPR</span>
+              </div>
             </div>
           </div>
         </div>
@@ -819,34 +821,47 @@ const Home = () => {
         <div className="lp-hero-glow"/>
         <div className="lp-hero-glow2"/>
         <div className="lp-hero-in">
-          <div className="lp-hero-badge">
-            <span className="lp-h-dot"/>
-            RDPR Karnataka · NIC · Digital India Initiative
+          <div className="lp-hero-left">
+            <div className="lp-hero-badge">
+              <span className="lp-h-dot"/>
+              RDPR Karnataka · NIC · Digital India Initiative
+            </div>
+            <h1>Rural Property Records, <span>Now Fully Digital</span></h1>
+            <div className="lp-hero-kn">ಗ್ರಾಮೀಣ ಆಸ್ತಿ ದಾಖಲಾತಿ ಈಗ ಡಿಜಿಟಲ್ ಆಗಿದೆ</div>
+            <p className="lp-hero-desc">
+              e-Swathu is Karnataka's official digital portal for all non-agricultural properties under
+              Gram Panchayat jurisdiction. Download Form 9, Form 11B, e-Khata and track mutations —
+              instantly, securely, free of cost.
+            </p>
+            <div className="lp-srch">
+              <input
+                type="text"
+                placeholder="Property ID, owner name, or survey number…"
+                value={searchQ}
+                onChange={e => setSearchQ(e.target.value)}
+              />
+              <select value={searchD} onChange={e => setSearchD(e.target.value)}>
+                <option value="">All Districts</option>
+                {['Bengaluru Rural','Mysuru','Tumakuru','Hassan','Mandya','Shivamogga','Dharwad','Belagavi','Kalaburagi']
+                  .map(d => <option key={d}>{d}</option>)}
+              </select>
+              <button className="lp-srch-btn" onClick={() => navigate(`/search?q=${searchQ}&district=${searchD}`)}>
+                Search →
+              </button>
+            </div>
+            <div className="lp-srch-note">No login needed · Free to access · Available 24 × 7</div>
           </div>
-          <h1>Rural Property Records, <span>Now Fully Digital</span></h1>
-          <div className="lp-hero-kn">ಗ್ರಾಮೀಣ ಆಸ್ತಿ ದಾಖಲಾತಿ ಈಗ ಡಿಜಿಟಲ್ ಆಗಿದೆ</div>
-          <p className="lp-hero-desc">
-            e-Swathu is Karnataka's official digital portal for all non-agricultural properties under
-            Gram Panchayat jurisdiction. Download Form 9, Form 11B, e-Khata and track mutations —
-            instantly, securely, free of cost.
-          </p>
-          <div className="lp-srch">
-            <input
-              type="text"
-              placeholder="Property ID, owner name, or survey number…"
-              value={searchQ}
-              onChange={e => setSearchQ(e.target.value)}
-            />
-            <select value={searchD} onChange={e => setSearchD(e.target.value)}>
-              <option value="">All Districts</option>
-              {['Bengaluru Rural','Mysuru','Tumakuru','Hassan','Mandya','Shivamogga','Dharwad','Belagavi','Kalaburagi']
-                .map(d => <option key={d}>{d}</option>)}
-            </select>
-            <button className="lp-srch-btn" onClick={() => navigate(`/search?q=${searchQ}&district=${searchD}`)}>
-              Search →
-            </button>
+
+          <div className="lp-hero-right">
+            <div className="lp-hero-right-title">Quick Citizen Services</div>
+            <div className="lp-hero-quick">
+              {quickLinks.map(q => (
+                <div key={q.label} className="lp-hq-item" onClick={() => navigate(q.route)}>
+                  <span className="lp-hq-ico">{q.icon}</span>{q.label}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="lp-srch-note">No login needed · Free to access · Available 24 × 7</div>
         </div>
       </section>
 
@@ -890,17 +905,16 @@ const Home = () => {
 
       {/* ── SERVICES ── */}
       <section className="lp-svc lp-fade" id="services" ref={addRef}>
-        <div className="lp-sec-hdr">
-          <div>
-            <div className="lp-eye">Citizen Services</div>
-            <div className="lp-sec-h">Services available without login</div>
+        <div className="lp-sec-hdr-compact">
+          <div className="lp-sec-hdr-mini">
+            <span className="lp-eye-mini">Citizen Services</span>
+            <span className="lp-sec-h-mini">Services available without login</span>
           </div>
-          <a className="lp-see-all" href="#services">View all services →</a>
-        </div>
-        <div className="lp-tabs">
-          {serviceTabs.map(t => (
-            <button key={t} className={`lp-tab ${activeTab === t ? 'on' : ''}`} onClick={() => setActiveTab(t)}>{t}</button>
-          ))}
+          <div className="lp-tabs">
+            {serviceTabs.map(t => (
+              <button key={t} className={`lp-tab ${activeTab === t ? 'on' : ''}`} onClick={() => setActiveTab(t)}>{t}</button>
+            ))}
+          </div>
         </div>
         <div className="lp-grid">
           {visible.map(c => (
