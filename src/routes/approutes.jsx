@@ -13,6 +13,7 @@ import PropertyMapGIS from "@/features/dashboard/PropertyMapGIS";
 import About from "@/features/about/about";
 import Notifications from "@/features/notifications/notifications";
 import Help from "@/features/help/help";
+import Propertyregistration_new from "@/features/dashboard/Propertyregistration_new"
 
 const AppRoutes = () => {
   return (
@@ -31,12 +32,12 @@ const AppRoutes = () => {
           <Route path="/verify-document" element={<VerifyDocument />} />
           <Route path="/track-mutation" element={<TrackMutationStatus />} />
           <Route path="/property-map" element={<PropertyMapGIS />} />
+          <Route path="/Propertyregistration_new" element={<Propertyregistration_new />} />
           <Route path="/propertylist" element={<PropertyList />} />
         </Route>
       </Routes>
     </BrowserRouter>
   );
 };
- 
+
 export default AppRoutes;
- 
