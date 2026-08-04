@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import Home from "@/features/home/home";
 import Login from "@/features/auth/login";
 import EswathuSearchProperty from "@/features/dashboard/eswathusearchproperty";
+import PropertyList from "@/features/dashboard/PropertyList"; // adjust path to wherever you saved it
 import DownloadForm9 from "@/features/dashboard/DownloadForm9";
 import DownloadForm11B from "@/features/dashboard/DownloadForm11B";
 import VerifyDocument from "@/features/dashboard/VerifyDocument";
@@ -30,6 +31,7 @@ const AppRoutes = () => {
           <Route path="/verify-document" element={<VerifyDocument />} />
           <Route path="/track-mutation" element={<TrackMutationStatus />} />
           <Route path="/property-map" element={<PropertyMapGIS />} />
+          <Route path="/propertylist" element={<PropertyList />} />
         </Route>
       </Routes>
     </BrowserRouter>
