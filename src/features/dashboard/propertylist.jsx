@@ -12,9 +12,20 @@ const EP = {
   GPS: "PropertyList/GetGPs",
   VILLAGES: "PropertyList/GetVillages",
   LIST: "/PropertyList/GetP2Data",
+  BY_PROPERTY_ID: "/PropertyList/GetPropertyDataByPropertyId",
 };
 
 const pick = (obj, ...keys) => { for (const k of keys) if (obj?.[k] != null) return obj[k]; return ""; };
+
+// tolerant extractor: handles stringified JSON and different DataSet table-name casings
+const extractRows = (data) => {
+  let d = data;
+  if (typeof d === "string") {
+    try { d = JSON.parse(d); } catch { return []; }
+  }
+  if (Array.isArray(d)) return d;
+  return d?.Table || d?.table || d?.Table1 || [];
+};
 
 function Row({ label, children }) {
   return (
@@ -44,7 +55,6 @@ export default function PropertyList() {
   const [searched, setSearched] = useState(false);
   const [allRows, setAllRows] = useState([]);
   const [err, setErr] = useState("");
-  
 
   useEffect(() => {
     axiosInstance.get(EP.DISTRICTS)
@@ -83,27 +93,27 @@ export default function PropertyList() {
     }
   };
   const onVillage = async (v) => {
-    debugger;
     setF({ ...f, village: v });
-    setErr(""); 
+    setErr("");
     setSearched(true);
-   try {
-      const r = await axiosInstance.get(EP.LIST,{
-    params:{propertyId}
-});
-
-setAllRows(r.data.Table || []);
-setRows(r.data.Table || []);
+    try {
+      const r = await axiosInstance.get(EP.LIST, { params: { gpCode: f.gp, villageCode: v } });
+      const data = extractRows(r.data);
+      setAllRows(data);
+      setRows(data);
     } catch (e) { console.error("propertyList FAILED:", e.response?.status, e.response?.data); }
   };
-
 
   const searchByPropertyId = async () => {
     setErr("");
     if (!/^\d{18}$/.test(propertyId)) return setErr("Please enter a valid 18 digit Property ID");
+    setSearched(true);
     try {
-      const r = await axiosInstance.get(EP.LIST, { params: { propertyId } });
-      setAllRows(r.data || []); setRows(r.data || []);
+      const r = await axiosInstance.get(EP.BY_PROPERTY_ID, { params: { propertyId } });
+      console.log("propertyId raw response:", r.data);
+      const data = extractRows(r.data);
+      setAllRows(data);
+      setRows(data);
     } catch (e) {
       console.error("propertyId search FAILED:", e.response?.status, e.response?.data);
       setErr("Error fetching property");
@@ -113,7 +123,7 @@ setRows(r.data.Table || []);
   const reset = () => {
     setF({ district: "", block: "", gp: "", village: "" });
     setPropertyId("");
-    setBlocks([]); setGps([]); setVillages([]); setRows([]); setAllRows([]); setErr(""); 
+    setBlocks([]); setGps([]); setVillages([]); setRows([]); setAllRows([]); setErr(""); setSearched(false);
   };
 
   const changeTab = (_, v) => { setTab(v); reset(); };
@@ -217,128 +227,53 @@ setRows(r.data.Table || []);
 
       {err && <Typography color="error" sx={{ mt: 1 }}>{err}</Typography>}
 
-    {/* replace the {rows.length > 0 && (...)} grid block with this */}
-<Paper sx={{ mt: 3, border: "1px solid #e0e0e0" }}>
- <Table stickyHeader>
-   <TableHead sx={{ bgcolor: "#0F4C81" }}>
-  <TableRow>
-    <TableCell sx={{ color: "#fff", fontWeight: 700 }}>Gram Panchayat</TableCell>
-
-    <TableCell sx={{ color: "#fff", fontWeight: 700 }}>Village</TableCell>
-
-    <TableCell sx={{ color: "#fff", fontWeight: 700 }}>Property ID</TableCell>
-
-    <TableCell sx={{ color: "#fff", fontWeight: 700 }}>Asset Number</TableCell>
-
-    <TableCell sx={{ color: "#fff", fontWeight: 700 }}>Owner Name</TableCell>
-
-    <TableCell sx={{ color: "#fff", fontWeight: 700 }}>Address</TableCell>
-
-    <TableCell sx={{ color: "#fff", fontWeight: 700 }}>Property Type</TableCell>
-
-    <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
-      Download
-    </TableCell>
-
-    <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
-      Submit Information for Final e-Khata / Correction
-    </TableCell>
-
-    <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
-      Object not to issue Final e-Khata
-    </TableCell>
-  </TableRow>
-</TableHead>
-    <TableBody>
-
-{rows.length === 0 ? (
-
-<TableRow>
-<TableCell colSpan={10} align="center">
-No Records Found
-</TableCell>
-</TableRow>
-
-) : (
-
-rows.map((row,index)=>(
-
-<TableRow key={index} hover>
-
-<TableCell>
-{row.PanchayatName}
-</TableCell>
-
-<TableCell>
-{row.VillageName}
-</TableCell>
-
-<TableCell>
-{row.PropertyId}
-</TableCell>
-
-<TableCell>
-{row.AssetNumber}
-</TableCell>
-
-<TableCell>
-{row.OwnerName}
-</TableCell>
-
-<TableCell sx={{maxWidth:250}}>
-{row.Address}
-</TableCell>
-
-<TableCell>
-{row.PropertyType}
-</TableCell>
-
-<TableCell>
-
-<Button
-size="small"
-variant="text"
-onClick={()=>handlePrint(row,"DRAFT")}
->
-{row.FINALDRAFTEKHATA}
-</Button>
-
-</TableCell>
-
-<TableCell>
-
-<Button
-size="small"
-variant="contained"
-onClick={()=>handleLoginClick(row)}
->
-CLICK HERE
-</Button>
-
-</TableCell>
-
-<TableCell>
-
-<Button
-size="small"
-variant="outlined"
-color="error"
-onClick={()=>handleObjectClick(row)}
->
-CLICK HERE
-</Button>
-
-</TableCell>
-
-</TableRow>
-
-))
-
-)}
-
-</TableBody>
-  </Table>
-</Paper>
+      {searched && (
+        <Paper sx={{ mt: 3, border: "1px solid #e0e0e0" }}>
+          <Table stickyHeader>
+            <TableHead>
+              <TableRow>
+                {[
+                  "Gram Panchayat", "Village", "Property ID", "Asset Number", "Owner Name",
+                  "Address", "Property Type", "Download",
+                  "Submit Information for Final e-Khata / Correction", "Object not to issue Final e-Khata",
+                ].map(h => (
+                  <TableCell key={h} sx={{ bgcolor: "#0F4C81", color: "#fff", fontWeight: 700 }}>{h}</TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={10} align="center">No Records Found</TableCell>
+                </TableRow>
+              ) : (
+                rows.map((row, index) => (
+                  <TableRow key={index} hover>
+                    <TableCell>{row.PanchayatName}</TableCell>
+                    <TableCell>{row.VillageName}</TableCell>
+                    <TableCell>{row.PropertyId}</TableCell>
+                    <TableCell>{row.AssetNumber}</TableCell>
+                    <TableCell>{row.OwnerName}</TableCell>
+                    <TableCell sx={{ maxWidth: 250 }}>{row.Address}</TableCell>
+                    <TableCell>{row.PropertyType}</TableCell>
+                    <TableCell>
+                      <Button size="small" variant="text" onClick={() => handlePrint(row, "DRAFT")}>
+                        {row.FINALDRAFTEKHATA}
+                      </Button>
+                    </TableCell>
+                    <TableCell>
+                      <Button size="small" variant="contained" onClick={() => handleLoginClick(row)}>CLICK HERE</Button>
+                    </TableCell>
+                    <TableCell>
+                      <Button size="small" variant="outlined" color="error" onClick={() => handleObjectClick(row)}>CLICK HERE</Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </Paper>
+      )}
     </Box>
   );
 }
