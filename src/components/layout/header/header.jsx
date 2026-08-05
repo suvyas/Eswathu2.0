@@ -12,8 +12,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 import bbmplogo from '@/assets/bbmp.png';
-import niclogo from '@/assets/NIC_Logo1-01.png';
-
+import niclogo from '@/assets/NicLogo.jpeg';
+import cmImage from '@/assets/CM.jpeg';
+import govlogo from '@/assets/govlogo.jpg';
 const COLORS = {
   primary: '#1E3A8A', primaryMid: '#1D4ED8', primaryBorder: '#2563EB',
   accent: '#FFC72C', accentLight: '#FFD95A', accentBg: '#FFF4CC',
@@ -112,9 +113,9 @@ const Header = () => {
       <Box sx={{ bgcolor: '#fff', borderBottom: `5px solid ${COLORS.primaryBorder}`, px: { xs: 1.5, md: 3 }, py: { xs: 2, md: 2.5 } }}>
         <Box sx={{ maxWidth: 1280, mx: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 2.5 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexShrink: 0 }}>
-            {!isMobile && <MinisterCard name="Shri D.K. Shivakumar" role="Hon'ble Chief Minister" />}
+            {!isMobile && <MinisterCard name="Hon'ble Chief Minister" role="Chief Minister" imgSrc={cmImage} />}
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.4 }}>
-              <Box component="img" src={bbmplogo} alt="Govt Emblem" sx={{ width: { xs: 48, md: 60 }, height: { xs: 54, md: 68 }, objectFit: 'contain' }} />
+              <Box component="img" src={govlogo} alt="Govt Emblem" sx={{ width: { xs: 60, md: 80 }, height: { xs: 68, md: 90 }, objectFit: 'contain' }} />
               <Typography sx={{ fontSize: 7.5, color: '#666', textAlign: 'center', lineHeight: 1.3 }}>भारत सरकार<br />Govt. of India</Typography>
             </Box>
           </Box>
@@ -127,14 +128,13 @@ const Header = () => {
           </Box>
 
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexShrink: 0 }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.4 }}>
+            {/* <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.4 }}>
               <Box sx={{ width: 40, height: 26, background: 'linear-gradient(180deg,#ff9933 33%,#fff 33%,#fff 66%,#138808 66%)', borderRadius: 0.5, border: '1px solid #ddd', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
                 <Box sx={{ width: 10, height: 10, borderRadius: '50%', border: '1.5px solid #000080', position: 'absolute' }} />
               </Box>
               <Typography sx={{ fontSize: 8, color: '#334155', fontWeight: 700 }}>DIGITAL INDIA</Typography>
-            </Box>
-            <Box component="img" src={niclogo} alt="NIC Logo" sx={{ width: { xs: 46, md: 58 }, height: { xs: 28, md: 34 }, objectFit: 'contain', bgcolor: '#fff', borderRadius: 0.5 }} />
-            {!isMobile && <MinisterCard name="Shri Priyank Kharge" role="Hon'ble Minister, RDPR" />}
+            </Box> */}
+            <Box component="img" src={niclogo} alt="NIC Logo" sx={{ width: { xs: 175, md: 300 }, height: { xs: 120, md: 90 }, objectFit: 'contain', bgcolor: '#fff', borderRadius: 0.5 }} />
           </Box>
         </Box>
       </Box>
@@ -156,7 +156,7 @@ const Header = () => {
               {['Home', 'Services', 'About', 'Notifications', 'Help & FAQ'].map((label, i) => (
                 <NavButton key={label} label={label} icon={i === 0 ? <HomeIcon sx={{ fontSize: 16, mr: 0.5 }} /> : null}
                   active={activeNav === label.toLowerCase()}
-                  onClick={() => { setActiveNav(label.toLowerCase()); if (i === 0) handleRefresh('https://eswathu.karnataka.gov.in/citizen_core'); }}
+                  onClick={() => { setActiveNav(label.toLowerCase()); if (i === 0) handleRefresh('https://e-swathutest.karnataka.gov.in:8443/eswathu_core/'); }}
                   accent={COLORS.accent} />
               ))}
               {menuTitles.map((item, index) => (
@@ -177,8 +177,10 @@ const Header = () => {
       {/* TICKER */}
       <Box sx={{ bgcolor: COLORS.accentBg, borderBottom: `2px solid ${COLORS.accent}`, px: 2.5, py: '7px', display: 'flex', alignItems: 'center', gap: 1.5, overflow: 'hidden' }}>
         <Box sx={{ bgcolor: COLORS.primary, color: '#fff', fontSize: 10, fontWeight: 700, px: 1.2, py: '3px', borderRadius: 0.5, whiteSpace: 'nowrap', flexShrink: 0 }}>📢 NOTICE</Box>
-        <Box sx={{ fontSize: 12, color: COLORS.tickerText, whiteSpace: 'nowrap', fontWeight: 500, animation: 'eswathu-ticker 30s linear infinite',
-          '@keyframes eswathu-ticker': { from: { transform: 'translateX(80vw)' }, to: { transform: 'translateX(-100%)' } } }}>
+        <Box sx={{
+          fontSize: 12, color: COLORS.tickerText, whiteSpace: 'nowrap', fontWeight: 500, animation: 'eswathu-ticker 30s linear infinite',
+          '@keyframes eswathu-ticker': { from: { transform: 'translateX(80vw)' }, to: { transform: 'translateX(-100%)' } }
+        }}>
           e-Swathu 2.0 launched — digital signatures &amp; QR codes on all property documents &nbsp;·&nbsp;
           Real-time sync with Bhoomi and Kaveri Online Services now active &nbsp;·&nbsp;
           Aadhaar OTP mandatory for all mutation and e-Khata applications from Jan 2026 &nbsp;·&nbsp;
@@ -194,15 +196,19 @@ const Header = () => {
   );
 };
 
-const MinisterCard = ({ name, role }) => (
+const MinisterCard = ({ name, role, imgSrc }) => (
   <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.6, flexShrink: 0 }}>
-    <Box sx={{ width: 64, height: 78, borderRadius: 1.5, border: '3px solid #FFC72C', overflow: 'hidden', background: 'linear-gradient(160deg,#1D4ED8,#1E3A8A)', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', boxShadow: '0 4px 12px rgba(30,58,138,0.28)' }}>
-      <svg viewBox="0 0 72 86" width="64" height="78" fill="none">
-        <ellipse cx="36" cy="34" rx="16" ry="18" fill="#c8a080" />
-        <path d="M8 86 Q8 62 36 55 Q64 62 64 86Z" fill="#1a1a2a" />
-        <path d="M20 86 Q8 70 4 80Z" fill="#FFC72C" opacity=".35" />
-        <path d="M52 86 Q64 70 68 80Z" fill="#FFC72C" opacity=".35" />
-      </svg>
+    <Box sx={{ width: 86, height: 104, borderRadius: 1.5, border: '3px solid #FFC72C', overflow: 'hidden', background: 'linear-gradient(160deg,#1D4ED8,#1E3A8A)', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', boxShadow: '0 4px 12px rgba(30,58,138,0.28)' }}>
+      {imgSrc ? (
+        <Box component="img" src={imgSrc} alt={name} sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      ) : (
+        <svg viewBox="0 0 72 86" width="64" height="78" fill="none">
+          <ellipse cx="36" cy="34" rx="16" ry="18" fill="#c8a080" />
+          <path d="M8 86 Q8 62 36 55 Q64 62 64 86Z" fill="#1a1a2a" />
+          <path d="M20 86 Q8 70 4 80Z" fill="#FFC72C" opacity=".35" />
+          <path d="M52 86 Q64 70 68 80Z" fill="#FFC72C" opacity=".35" />
+        </svg>
+      )}
     </Box>
     <Box sx={{ textAlign: 'center' }}>
       <Typography sx={{ fontSize: 12, fontWeight: 700, color: '#1E293B', whiteSpace: 'nowrap' }}>{name}</Typography>

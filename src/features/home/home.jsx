@@ -1,5 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
+import bbmplogo from '@/assets/bbmp.png';
+import niclogo from '@/assets/NicLogo.jpeg';
+import cmImage from '@/assets/CM.jpeg';
+import govlogo from '@/assets/govlogo.jpg';
 
 /* ═══════════════════════════════════════════════════════
    SCOPED CSS  (prefixed lp- so it never leaks into MUI)
@@ -502,118 +506,118 @@ const CSS = `
 ───────────────────────────────────── */
 const IndiaEmblem = () => (
   <svg width="60" height="70" viewBox="0 0 66 76" fill="none">
-    <rect x="25" y="65" width="16" height="9" rx="2" fill="#9a8040"/>
-    <rect x="21" y="59" width="24" height="8" rx="1" fill="#b89a50"/>
-    <rect x="13" y="43" width="40" height="17" rx="2" fill="#003087"/>
-    <circle cx="33" cy="51.5" r="5.5" fill="none" stroke="#d4a017" strokeWidth="1.3"/>
-    <circle cx="33" cy="51.5" r="1.6" fill="#d4a017"/>
-    <line x1="33" y1="46" x2="33" y2="57" stroke="#d4a017" strokeWidth=".75"/>
-    <line x1="27.5" y1="51.5" x2="38.5" y2="51.5" stroke="#d4a017" strokeWidth=".75"/>
-    <line x1="29.6" y1="47.6" x2="36.4" y2="55.4" stroke="#d4a017" strokeWidth=".75"/>
-    <line x1="36.4" y1="47.6" x2="29.6" y2="55.4" stroke="#d4a017" strokeWidth=".75"/>
-    <ellipse cx="23" cy="37" rx="9.5" ry="8" fill="#c8a040"/>
-    <ellipse cx="43" cy="37" rx="9.5" ry="8" fill="#c8a040"/>
-    <circle cx="17" cy="28" r="7.5" fill="#a88030"/>
-    <circle cx="49" cy="28" r="7.5" fill="#a88030"/>
-    <circle cx="17" cy="28" r="9" fill="none" stroke="#7a6018" strokeWidth="1.5"/>
-    <circle cx="49" cy="28" r="9" fill="none" stroke="#7a6018" strokeWidth="1.5"/>
-    <circle cx="15" cy="27" r="2.5" fill="#d4b850"/>
-    <circle cx="47" cy="27" r="2.5" fill="#d4b850"/>
-    <ellipse cx="33" cy="19" rx="5.5" ry="3.5" fill="#c8a040"/>
-    <rect x="30" y="13" width="6" height="7" fill="#c8a040"/>
+    <rect x="25" y="65" width="16" height="9" rx="2" fill="#9a8040" />
+    <rect x="21" y="59" width="24" height="8" rx="1" fill="#b89a50" />
+    <rect x="13" y="43" width="40" height="17" rx="2" fill="#003087" />
+    <circle cx="33" cy="51.5" r="5.5" fill="none" stroke="#d4a017" strokeWidth="1.3" />
+    <circle cx="33" cy="51.5" r="1.6" fill="#d4a017" />
+    <line x1="33" y1="46" x2="33" y2="57" stroke="#d4a017" strokeWidth=".75" />
+    <line x1="27.5" y1="51.5" x2="38.5" y2="51.5" stroke="#d4a017" strokeWidth=".75" />
+    <line x1="29.6" y1="47.6" x2="36.4" y2="55.4" stroke="#d4a017" strokeWidth=".75" />
+    <line x1="36.4" y1="47.6" x2="29.6" y2="55.4" stroke="#d4a017" strokeWidth=".75" />
+    <ellipse cx="23" cy="37" rx="9.5" ry="8" fill="#c8a040" />
+    <ellipse cx="43" cy="37" rx="9.5" ry="8" fill="#c8a040" />
+    <circle cx="17" cy="28" r="7.5" fill="#a88030" />
+    <circle cx="49" cy="28" r="7.5" fill="#a88030" />
+    <circle cx="17" cy="28" r="9" fill="none" stroke="#7a6018" strokeWidth="1.5" />
+    <circle cx="49" cy="28" r="9" fill="none" stroke="#7a6018" strokeWidth="1.5" />
+    <circle cx="15" cy="27" r="2.5" fill="#d4b850" />
+    <circle cx="47" cy="27" r="2.5" fill="#d4b850" />
+    <ellipse cx="33" cy="19" rx="5.5" ry="3.5" fill="#c8a040" />
+    <rect x="30" y="13" width="6" height="7" fill="#c8a040" />
     <text x="33" y="75" textAnchor="middle" fontSize="5.2" fill="#555" fontFamily="serif">सत्यमेव जयते</text>
   </svg>
 );
 
 const KarnatakaEmblem = () => (
   <svg width="60" height="70" viewBox="0 0 66 76" fill="none">
-    <path d="M11 9 L55 9 L55 48 Q33 68 11 48 Z" fill="#8B0000"/>
-    <path d="M14 12 L52 12 L52 47 Q33 64 14 47 Z" fill="#6B0000"/>
-    <ellipse cx="33" cy="33" rx="11" ry="7.5" fill="rgba(255,255,255,.92)"/>
-    <circle cx="20" cy="24" r="6.5" fill="rgba(255,255,255,.92)"/>
-    <circle cx="46" cy="24" r="6.5" fill="rgba(255,255,255,.92)"/>
-    <path d="M14 23 L9 21 L13 25 Z" fill="#c8a040"/>
-    <path d="M52 23 L57 21 L53 25 Z" fill="#c8a040"/>
-    <path d="M14 33 Q5 25 8 14 Q15 27 21 29Z" fill="rgba(255,255,255,.68)"/>
-    <path d="M52 33 Q61 25 58 14 Q51 27 45 29Z" fill="rgba(255,255,255,.68)"/>
-    <path d="M28 41 Q33 54 38 41" stroke="rgba(255,255,255,.65)" strokeWidth="2.2" fill="none"/>
-    <ellipse cx="6" cy="28" rx="5.5" ry="7" fill="#c8a040"/>
-    <circle cx="6" cy="20" r="5.5" fill="#a88030"/>
-    <circle cx="6" cy="20" r="6.5" fill="none" stroke="#8a6820" strokeWidth="1.3"/>
-    <ellipse cx="60" cy="28" rx="5.5" ry="7" fill="#c8a040"/>
-    <circle cx="60" cy="20" r="5.5" fill="#a88030"/>
-    <circle cx="60" cy="20" r="6.5" fill="none" stroke="#8a6820" strokeWidth="1.3"/>
-    <rect x="11" y="58" width="44" height="9" rx="2.5" fill="#c8a040"/>
+    <path d="M11 9 L55 9 L55 48 Q33 68 11 48 Z" fill="#8B0000" />
+    <path d="M14 12 L52 12 L52 47 Q33 64 14 47 Z" fill="#6B0000" />
+    <ellipse cx="33" cy="33" rx="11" ry="7.5" fill="rgba(255,255,255,.92)" />
+    <circle cx="20" cy="24" r="6.5" fill="rgba(255,255,255,.92)" />
+    <circle cx="46" cy="24" r="6.5" fill="rgba(255,255,255,.92)" />
+    <path d="M14 23 L9 21 L13 25 Z" fill="#c8a040" />
+    <path d="M52 23 L57 21 L53 25 Z" fill="#c8a040" />
+    <path d="M14 33 Q5 25 8 14 Q15 27 21 29Z" fill="rgba(255,255,255,.68)" />
+    <path d="M52 33 Q61 25 58 14 Q51 27 45 29Z" fill="rgba(255,255,255,.68)" />
+    <path d="M28 41 Q33 54 38 41" stroke="rgba(255,255,255,.65)" strokeWidth="2.2" fill="none" />
+    <ellipse cx="6" cy="28" rx="5.5" ry="7" fill="#c8a040" />
+    <circle cx="6" cy="20" r="5.5" fill="#a88030" />
+    <circle cx="6" cy="20" r="6.5" fill="none" stroke="#8a6820" strokeWidth="1.3" />
+    <ellipse cx="60" cy="28" rx="5.5" ry="7" fill="#c8a040" />
+    <circle cx="60" cy="20" r="5.5" fill="#a88030" />
+    <circle cx="60" cy="20" r="6.5" fill="none" stroke="#8a6820" strokeWidth="1.3" />
+    <rect x="11" y="58" width="44" height="9" rx="2.5" fill="#c8a040" />
     <text x="33" y="64.5" textAnchor="middle" fontSize="4.2" fill="#5a0000" fontWeight="bold">ಸರ್ವಜನ ಸುಖಿನೋ ಭವಂತು</text>
     <text x="33" y="75" textAnchor="middle" fontSize="5" fill="#555">ಕರ್ನಾಟಕ ಸರ್ಕಾರ</text>
   </svg>
 );
 
 const CMPortrait = () => (
-  <svg viewBox="0 0 80 96" fill="none" style={{width:'100%',height:'100%'}}>
+  <svg viewBox="0 0 80 96" fill="none" style={{ width: '100%', height: '100%' }}>
     <defs>
       <linearGradient id="lp-cm" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#1D4ED8"/>
-        <stop offset="100%" stopColor="#1E3A8A"/>
+        <stop offset="0%" stopColor="#1D4ED8" />
+        <stop offset="100%" stopColor="#1E3A8A" />
       </linearGradient>
     </defs>
-    <rect width="80" height="96" fill="url(#lp-cm)"/>
-    <path d="M0 96 L0 72 Q12 63 22 60 L40 56 L58 60 Q68 63 80 72 L80 96Z" fill="#0F172A"/>
-    <path d="M33 56 L40 63 L47 56 L44 52 L40 60 L36 52Z" fill="#e8e8e8"/>
-    <ellipse cx="40" cy="54" rx="9" ry="6.5" fill="#c8a080"/>
-    <ellipse cx="40" cy="36" rx="17" ry="19" fill="#c8a080"/>
-    <path d="M23 30 Q24 14 40 14 Q56 14 57 30 Q52 22 40 22 Q28 22 23 30Z" fill="#2a1a08"/>
-    <path d="M23 32 Q22 36 23 42 Q24 38 25 35Z" fill="#aaa"/>
-    <path d="M57 32 Q58 36 57 42 Q56 38 55 35Z" fill="#aaa"/>
-    <ellipse cx="23" cy="38" rx="3.5" ry="4.5" fill="#b89070"/>
-    <ellipse cx="57" cy="38" rx="3.5" ry="4.5" fill="#b89070"/>
-    <ellipse cx="33" cy="37" rx="3.8" ry="3" fill="#1a0800"/>
-    <ellipse cx="47" cy="37" rx="3.8" ry="3" fill="#1a0800"/>
-    <circle cx="32.5" cy="36.5" r="1.2" fill="#fff"/>
-    <circle cx="46.5" cy="36.5" r="1.2" fill="#fff"/>
-    <path d="M28 32 Q33 30 37 32" stroke="#1a0800" strokeWidth="1.6" fill="none"/>
-    <path d="M43 32 Q47 30 52 32" stroke="#1a0800" strokeWidth="1.6" fill="none"/>
-    <path d="M37 42 Q40 47 43 42" stroke="#a07858" strokeWidth="1.1" fill="none"/>
-    <path d="M35 46 Q40 48 45 46" stroke="#3a2010" strokeWidth="1.3" fill="none"/>
-    <path d="M34 50 Q40 55 46 50" stroke="#8a5830" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-    <path d="M22 60 Q8 68 4 84 L0 84 L0 74Z" fill="#FFC72C" opacity=".4"/>
-    <path d="M58 60 Q72 68 76 84 L80 84 L80 74Z" fill="#FFC72C" opacity=".4"/>
+    <rect width="80" height="96" fill="url(#lp-cm)" />
+    <path d="M0 96 L0 72 Q12 63 22 60 L40 56 L58 60 Q68 63 80 72 L80 96Z" fill="#0F172A" />
+    <path d="M33 56 L40 63 L47 56 L44 52 L40 60 L36 52Z" fill="#e8e8e8" />
+    <ellipse cx="40" cy="54" rx="9" ry="6.5" fill="#c8a080" />
+    <ellipse cx="40" cy="36" rx="17" ry="19" fill="#c8a080" />
+    <path d="M23 30 Q24 14 40 14 Q56 14 57 30 Q52 22 40 22 Q28 22 23 30Z" fill="#2a1a08" />
+    <path d="M23 32 Q22 36 23 42 Q24 38 25 35Z" fill="#aaa" />
+    <path d="M57 32 Q58 36 57 42 Q56 38 55 35Z" fill="#aaa" />
+    <ellipse cx="23" cy="38" rx="3.5" ry="4.5" fill="#b89070" />
+    <ellipse cx="57" cy="38" rx="3.5" ry="4.5" fill="#b89070" />
+    <ellipse cx="33" cy="37" rx="3.8" ry="3" fill="#1a0800" />
+    <ellipse cx="47" cy="37" rx="3.8" ry="3" fill="#1a0800" />
+    <circle cx="32.5" cy="36.5" r="1.2" fill="#fff" />
+    <circle cx="46.5" cy="36.5" r="1.2" fill="#fff" />
+    <path d="M28 32 Q33 30 37 32" stroke="#1a0800" strokeWidth="1.6" fill="none" />
+    <path d="M43 32 Q47 30 52 32" stroke="#1a0800" strokeWidth="1.6" fill="none" />
+    <path d="M37 42 Q40 47 43 42" stroke="#a07858" strokeWidth="1.1" fill="none" />
+    <path d="M35 46 Q40 48 45 46" stroke="#3a2010" strokeWidth="1.3" fill="none" />
+    <path d="M34 50 Q40 55 46 50" stroke="#8a5830" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+    <path d="M22 60 Q8 68 4 84 L0 84 L0 74Z" fill="#FFC72C" opacity=".4" />
+    <path d="M58 60 Q72 68 76 84 L80 84 L80 74Z" fill="#FFC72C" opacity=".4" />
   </svg>
 );
 
 const MinisterPortrait = () => (
-  <svg viewBox="0 0 80 96" fill="none" style={{width:'100%',height:'100%'}}>
+  <svg viewBox="0 0 80 96" fill="none" style={{ width: '100%', height: '100%' }}>
     <defs>
       <linearGradient id="lp-mn" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#1D4ED8"/>
-        <stop offset="100%" stopColor="#1E3A8A"/>
+        <stop offset="0%" stopColor="#1D4ED8" />
+        <stop offset="100%" stopColor="#1E3A8A" />
       </linearGradient>
     </defs>
-    <rect width="80" height="96" fill="url(#lp-mn)"/>
-    <path d="M0 96 L0 72 Q12 63 22 60 L40 56 L58 60 Q68 63 80 72 L80 96Z" fill="#0F172A"/>
-    <path d="M33 56 L40 63 L47 56 L44 52 L40 60 L36 52Z" fill="#e8e8e8"/>
-    <path d="M38 61 L40 76 L42 61Z" fill="#2563EB"/>
-    <ellipse cx="40" cy="54" rx="9" ry="6.5" fill="#b88860"/>
-    <ellipse cx="40" cy="36" rx="16" ry="18" fill="#b88860"/>
-    <path d="M24 29 Q25 14 40 14 Q55 14 56 29 Q51 22 40 22 Q29 22 24 29Z" fill="#080402"/>
-    <ellipse cx="24" cy="38" rx="3" ry="4.5" fill="#a07850"/>
-    <ellipse cx="56" cy="38" rx="3" ry="4.5" fill="#a07850"/>
-    <ellipse cx="33" cy="37" rx="3.8" ry="3" fill="#080402"/>
-    <ellipse cx="47" cy="37" rx="3.8" ry="3" fill="#080402"/>
-    <circle cx="32.5" cy="36.5" r="1.2" fill="#fff"/>
-    <circle cx="46.5" cy="36.5" r="1.2" fill="#fff"/>
-    <path d="M28 32 Q33 29.5 37 32" stroke="#080402" strokeWidth="1.8" fill="none"/>
-    <path d="M43 32 Q47 29.5 52 32" stroke="#080402" strokeWidth="1.8" fill="none"/>
-    <path d="M37 42 Q40 47 43 42" stroke="#906040" strokeWidth="1.1" fill="none"/>
-    <path d="M34 50 Q40 55 46 50" stroke="#7a4828" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-    <path d="M22 60 Q8 68 4 84 L0 84 L0 74Z" fill="#FFC72C" opacity=".45"/>
-    <path d="M58 60 Q72 68 76 84 L80 84 L80 74Z" fill="#FFC72C" opacity=".45"/>
+    <rect width="80" height="96" fill="url(#lp-mn)" />
+    <path d="M0 96 L0 72 Q12 63 22 60 L40 56 L58 60 Q68 63 80 72 L80 96Z" fill="#0F172A" />
+    <path d="M33 56 L40 63 L47 56 L44 52 L40 60 L36 52Z" fill="#e8e8e8" />
+    <path d="M38 61 L40 76 L42 61Z" fill="#2563EB" />
+    <ellipse cx="40" cy="54" rx="9" ry="6.5" fill="#b88860" />
+    <ellipse cx="40" cy="36" rx="16" ry="18" fill="#b88860" />
+    <path d="M24 29 Q25 14 40 14 Q55 14 56 29 Q51 22 40 22 Q29 22 24 29Z" fill="#080402" />
+    <ellipse cx="24" cy="38" rx="3" ry="4.5" fill="#a07850" />
+    <ellipse cx="56" cy="38" rx="3" ry="4.5" fill="#a07850" />
+    <ellipse cx="33" cy="37" rx="3.8" ry="3" fill="#080402" />
+    <ellipse cx="47" cy="37" rx="3.8" ry="3" fill="#080402" />
+    <circle cx="32.5" cy="36.5" r="1.2" fill="#fff" />
+    <circle cx="46.5" cy="36.5" r="1.2" fill="#fff" />
+    <path d="M28 32 Q33 29.5 37 32" stroke="#080402" strokeWidth="1.8" fill="none" />
+    <path d="M43 32 Q47 29.5 52 32" stroke="#080402" strokeWidth="1.8" fill="none" />
+    <path d="M37 42 Q40 47 43 42" stroke="#906040" strokeWidth="1.1" fill="none" />
+    <path d="M34 50 Q40 55 46 50" stroke="#7a4828" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+    <path d="M22 60 Q8 68 4 84 L0 84 L0 74Z" fill="#FFC72C" opacity=".45" />
+    <path d="M58 60 Q72 68 76 84 L80 84 L80 74Z" fill="#FFC72C" opacity=".45" />
   </svg>
 );
 
 const Arrow = () => (
-  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" style={{width:12,height:12}}>
-    <path d="M3 8h10M9 4l4 4-4 4"/>
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: 12, height: 12 }}>
+    <path d="M3 8h10M9 4l4 4-4 4" />
   </svg>
 );
 
@@ -624,10 +628,10 @@ const Home = () => {
   const navigate = useNavigate();
 
   const [mobNavOpen, setMobNavOpen] = useState(false);
-  const [activeTab, setActiveTab]   = useState('Documents');
-  const [searchQ, setSearchQ]       = useState('');
-  const [searchD, setSearchD]       = useState('');
-  const [activeNav, setActiveNav]   = useState('home');
+  const [activeTab, setActiveTab] = useState('Documents');
+  const [searchQ, setSearchQ] = useState('');
+  const [searchD, setSearchD] = useState('');
+  const [activeNav, setActiveNav] = useState('home');
 
   /* scroll-fade observer */
   const fadeRefs = useRef([]);
@@ -643,70 +647,70 @@ const Home = () => {
 
   /* ── DATA ── */
   const quickLinks = [
-    { icon:'🔍', label:'Search Property',  route:'/EswathuSearchProperty' },
-    { icon:'📄', label:'Download Form 9',  route:'/download-form9' },
-    { icon:'🔄', label:'Track Mutation',   route:'/track-mutation' },
-    { icon:'🏡', label:'Get e-Khata',      route:'/propertylist' },
+    { icon: '🔍', label: 'Search Property', route: '/EswathuSearchProperty' },
+    { icon: '📄', label: 'Download Form 9', route: '/download-form9' },
+    { icon: '🔄', label: 'Track Mutation', route: '/track-mutation' },
+    { icon: '🏡', label: 'Get e-Khata', route: '/propertylist' },
   ];
 
-  const serviceTabs = ['Documents','Search','Verification','Citizen Services'];
+  const serviceTabs = ['Documents', 'Search', 'Verification', 'Citizen Services'];
 
   const serviceCards = [
-    { icon:'🔍', title:'Search Property',        desc:'Search by District, Taluk, GP, Village, and Property ID or owner name. Free and instant — no login needed.',  link:'Go to search',       route:'/EswathuSearchProperty',     cat:'Search',          featured:true  },
-    { icon:'📄', title:'Download Form 9',         desc:'Download digitally signed Form 9 (Property Register Extract). PDF password is your Property ID.',              link:'Download now',       route:'/download-form9',             cat:'Documents',       featured:true  },
-    { icon:'📋', title:'Download Form 11B',       desc:'Get the Demand & Collection Register extract showing tax history and mutation records for your property.',       link:'Download now',       route:'/download-form11b',           cat:'Documents',       featured:false },
-    { icon:'✅', title:'Verify Document',          desc:'Verify authenticity of any e-Swathu document by entering certificate number or scanning QR code.',             link:'Verify certificate', route:'/verify-document',            cat:'Verification',    featured:false },
-    { icon:'🔄', title:'Track Mutation Status',   desc:'Enter your application number to check status of property transfer / mutation requests at your Gram Panchayat.',link:'Track status',       route:'/track-mutation',             cat:'Verification',    featured:false },
-    { icon:'🗺️', title:'Property Map (GIS)',      desc:'View property boundaries on GIS maps. Confirm plot location, survey number, and adjacent land records.',        link:'View on map',        route:'/property-map',               cat:'Search',          featured:false },
-    { icon:'🆕', title:'New e-Khata',             desc:'Apply for a new e-Khata for your property.',                                                                    link:'Apply now',          route:'/new-ekhata',                 cat:'Citizen Services',featured:true  },
-   { icon: '📄',  title: 'Get e-Khata',  desc: 'Download your issued e-Khata certificate instantly.',link: 'Download', route: '/propertylist',  cat: 'Citizen Services',featured: false,},
-   { icon:'⏳', title:'Pending Applications',     desc:'View applications awaiting approval from the concerned officer.',                                               link:'View applications',  route:'/pending-applications',       cat:'Citizen Services',featured:false },
-    { icon:'✅', title:'Submitted Applications',   desc:'View all your submitted application history and current status.',                                               link:'View history',       route:'/submitted-applications',     cat:'Citizen Services',featured:false },
-    { icon:'↩️', title:'Returned Applications',   desc:'Review applications returned with remarks and take corrective action.',                                         link:'View details',       route:'/returned-applications',      cat:'Citizen Services',featured:false },
-    { icon:'🔍', title:'Track Application',        desc:'Track the latest status of any of your property applications.',                                                 link:'Track status',       route:'/track-application',          cat:'Citizen Services',featured:false },
-    { icon:'📑', title:'Property Details',         desc:'Search and view detailed property information by ID or owner name.',                                            link:'Search property',    route:'/property-details',           cat:'Citizen Services',featured:false },
-    { icon:'🗺️', title:'Property Map',            desc:'View your property location on the GIS map with boundary details.',                                            link:'Open map',           route:'/property-map',               cat:'Citizen Services',featured:false },
-    { icon:'📥', title:'Download Certificates',   desc:'Download all approved certificates linked to your property or applications.',                                   link:'Download',           route:'/download-certificates',      cat:'Citizen Services',featured:false },
-    { icon:'💳', title:'Payment History',          desc:'View payment receipts and complete payment transaction history.',                                               link:'View payments',      route:'/payment-history',            cat:'Citizen Services',featured:false },
-    { icon:'📂', title:'Property Documents',       desc:'View and manage all uploaded property-related documents.',                                                      link:'View documents',     route:'/property-documents',         cat:'Citizen Services',featured:false },
-    { icon:'📢', title:'Raise Grievance',          desc:'Submit a grievance, feedback, or complaint regarding any property service.',                                   link:'Submit grievance',   route:'/grievance',                  cat:'Citizen Services',featured:false },
+    { icon: '🔍', title: 'Search Property', desc: 'Search by District, Taluk, GP, Village, and Property ID or owner name. Free and instant — no login needed.', link: 'Go to search', route: '/EswathuSearchProperty', cat: 'Search', featured: true },
+    { icon: '📄', title: 'Download Form 9', desc: 'Download digitally signed Form 9 (Property Register Extract). PDF password is your Property ID.', link: 'Download now', route: '/download-form9', cat: 'Documents', featured: true },
+    { icon: '📋', title: 'Download Form 11B', desc: 'Get the Demand & Collection Register extract showing tax history and mutation records for your property.', link: 'Download now', route: '/download-form11b', cat: 'Documents', featured: false },
+    { icon: '✅', title: 'Verify Document', desc: 'Verify authenticity of any e-Swathu document by entering certificate number or scanning QR code.', link: 'Verify certificate', route: '/verify-document', cat: 'Verification', featured: false },
+    { icon: '🔄', title: 'Track Mutation Status', desc: 'Enter your application number to check status of property transfer / mutation requests at your Gram Panchayat.', link: 'Track status', route: '/track-mutation', cat: 'Verification', featured: false },
+    { icon: '🗺️', title: 'Property Map (GIS)', desc: 'View property boundaries on GIS maps. Confirm plot location, survey number, and adjacent land records.', link: 'View on map', route: '/property-map', cat: 'Search', featured: false },
+    { icon: '🆕', title: 'New e-Khata', desc: 'Apply for a new e-Khata for your property.', link: 'Apply now', route: '/new-ekhata', cat: 'Citizen Services', featured: true },
+    { icon: '📄', title: 'Get e-Khata', desc: 'Download your issued e-Khata certificate instantly.', link: 'Download', route: '/propertylist', cat: 'Citizen Services', featured: false, },
+    { icon: '⏳', title: 'Pending Applications', desc: 'View applications awaiting approval from the concerned officer.', link: 'View applications', route: '/pending-applications', cat: 'Citizen Services', featured: false },
+    { icon: '✅', title: 'Submitted Applications', desc: 'View all your submitted application history and current status.', link: 'View history', route: '/submitted-applications', cat: 'Citizen Services', featured: false },
+    { icon: '↩️', title: 'Returned Applications', desc: 'Review applications returned with remarks and take corrective action.', link: 'View details', route: '/returned-applications', cat: 'Citizen Services', featured: false },
+    { icon: '🔍', title: 'Track Application', desc: 'Track the latest status of any of your property applications.', link: 'Track status', route: '/track-application', cat: 'Citizen Services', featured: false },
+    { icon: '📑', title: 'Property Details', desc: 'Search and view detailed property information by ID or owner name.', link: 'Search property', route: '/property-details', cat: 'Citizen Services', featured: false },
+    { icon: '🗺️', title: 'Property Map', desc: 'View your property location on the GIS map with boundary details.', link: 'Open map', route: '/property-map', cat: 'Citizen Services', featured: false },
+    { icon: '📥', title: 'Download Certificates', desc: 'Download all approved certificates linked to your property or applications.', link: 'Download', route: '/download-certificates', cat: 'Citizen Services', featured: false },
+    { icon: '💳', title: 'Payment History', desc: 'View payment receipts and complete payment transaction history.', link: 'View payments', route: '/payment-history', cat: 'Citizen Services', featured: false },
+    { icon: '📂', title: 'Property Documents', desc: 'View and manage all uploaded property-related documents.', link: 'View documents', route: '/property-documents', cat: 'Citizen Services', featured: false },
+    { icon: '📢', title: 'Raise Grievance', desc: 'Submit a grievance, feedback, or complaint regarding any property service.', link: 'Submit grievance', route: '/grievance', cat: 'Citizen Services', featured: false },
   ];
 
   const PROTECTED = new Set([
-    '/verify-document','/new-ekhata','/pending-applications',
-    '/submitted-applications','/returned-applications','/track-application',
-    '/property-details','/property-documents','/download-certificates',
-    '/payment-history','/grievance',
+    '/verify-document', '/new-ekhata', '/pending-applications',
+    '/submitted-applications', '/returned-applications', '/track-application',
+    '/property-details', '/property-documents', '/download-certificates',
+    '/payment-history', '/grievance',
   ]);
 
   const handleCard = route => {
     if (!route) return;
-    PROTECTED.has(route) ? navigate('/login', { state:{ from:route } }) : navigate(route);
+    PROTECTED.has(route) ? navigate('/login', { state: { from: route } }) : navigate(route);
   };
 
   const visible = serviceCards.filter(c => c.cat === activeTab);
 
   const notifications = [
-    { text:'e-Swathu 2.0 — Now Live',      sub:'Digital signatures and QR codes enabled on all new property documents across the state.',        dot:'#FFC72C' },
-    { text:'Bhoomi Integration Active',     sub:'Real-time sync with Revenue Department land records. RTC and e-Swathu data now linked.',         dot:'#FFC72C' },
-    { text:'Mangalore Mobile App',          sub:'Locate your property using the mobile app for Mangalore GP before applying for e-Khata.',        dot:'#16a34a' },
-    { text:'Aadhaar OTP Mandatory',         sub:'All mutation and e-Khata applications now require Aadhaar-based OTP from January 2026.',         dot:'#ea580c' },
-    { text:'Kaveri Sync Enabled',           sub:'Property registration data from Kaveri Online Services now reflected in e-Swathu automatically.',dot:'#FFC72C' },
+    { text: 'e-Swathu 2.0 — Now Live', sub: 'Digital signatures and QR codes enabled on all new property documents across the state.', dot: '#FFC72C' },
+    { text: 'Bhoomi Integration Active', sub: 'Real-time sync with Revenue Department land records. RTC and e-Swathu data now linked.', dot: '#FFC72C' },
+    { text: 'Mangalore Mobile App', sub: 'Locate your property using the mobile app for Mangalore GP before applying for e-Khata.', dot: '#16a34a' },
+    { text: 'Aadhaar OTP Mandatory', sub: 'All mutation and e-Khata applications now require Aadhaar-based OTP from January 2026.', dot: '#ea580c' },
+    { text: 'Kaveri Sync Enabled', sub: 'Property registration data from Kaveri Online Services now reflected in e-Swathu automatically.', dot: '#FFC72C' },
   ];
 
   const relatedPortals = [
-    { text:'Bhoomi — Land Records',                    sub:'RTC / Pahani, survey records for agricultural land under Revenue Dept.',             dot:'#1d4ed8' },
-    { text:'Kaveri Online Services',                   sub:'Property registration, encumbrance certificate and stamp duty for all Karnataka.',   dot:'#7c3aed' },
-    { text:'e-Aasthi — Urban Property',                sub:'Khata, property tax records for urban local bodies (BBMP, CMC, TMC).',              dot:'#0d9488' },
-    { text:'SAKALA — Service Guarantee Portal',        sub:'Track delivery timelines for all government services under Sakala Act.',             dot:'#d97706' },
-    { text:'Panchatantra — GP Management',             sub:'Gram Panchayat administration portal for GP-level officers and elected members.',    dot:'#dc2626' },
+    { text: 'Bhoomi — Land Records', sub: 'RTC / Pahani, survey records for agricultural land under Revenue Dept.', dot: '#1d4ed8' },
+    { text: 'Kaveri Online Services', sub: 'Property registration, encumbrance certificate and stamp duty for all Karnataka.', dot: '#7c3aed' },
+    { text: 'e-Aasthi — Urban Property', sub: 'Khata, property tax records for urban local bodies (BBMP, CMC, TMC).', dot: '#0d9488' },
+    { text: 'SAKALA — Service Guarantee Portal', sub: 'Track delivery timelines for all government services under Sakala Act.', dot: '#d97706' },
+    { text: 'Panchatantra — GP Management', sub: 'Gram Panchayat administration portal for GP-level officers and elected members.', dot: '#dc2626' },
   ];
 
   const portals = [
-    { e:'🌾', n:'Bhoomi',        d:'Agricultural land & RTC records' },
-    { e:'📜', n:'Kaveri Online', d:'Property registration'           },
-    { e:'🏙️', n:'e-Aasthi',     d:'Urban Khata services'            },
-    { e:'📊', n:'Panchatantra',  d:'GP administration portal'        },
+    { e: '🌾', n: 'Bhoomi', d: 'Agricultural land & RTC records' },
+    { e: '📜', n: 'Kaveri Online', d: 'Property registration' },
+    { e: '🏙️', n: 'e-Aasthi', d: 'Urban Khata services' },
+    { e: '📊', n: 'Panchatantra', d: 'GP administration portal' },
   ];
 
   /* ── RENDER ── */
@@ -718,7 +722,7 @@ const Home = () => {
       <div className="lp-acc">
         <span className="lp-acc-l">ಮುಖ್ಯ ವಿಷಯಕ್ಕೆ ಹೋಗಿ | Skip to main content</span>
         <div className="lp-acc-r">
-          {['A-','A','A+','High Contrast'].map(s => (
+          {['A-', 'A', 'A+', 'High Contrast'].map(s => (
             <button key={s} className="lp-acc-btn">{s}</button>
           ))}
           <button className="lp-acc-btn">ಕನ್ನಡ</button>
@@ -732,15 +736,19 @@ const Home = () => {
           {/* Left cluster: CM photo (name below) + India emblem */}
           <div className="lp-hdr-side">
             <div className="lp-hdr-mini">
-              <div className="lp-hdr-photo"><CMPortrait /></div>
+              <div className="lp-hdr-photo" style={{ width: 86, height: 104 }}><img src={cmImage} alt="CM" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
               <div className="lp-hdr-person">
                 <span className="lp-hdr-person-name">Shri D.K. Shivakumar</span>
                 <span className="lp-hdr-person-role">Hon'ble Chief Minister</span>
               </div>
             </div>
-            <div className="lp-emb">
-              <IndiaEmblem />
+            {/* <div className="lp-emb">
+              <img src={bbmplogo} alt="Govt Emblem" style={{ width: 80, height: 90, objectFit: 'contain' }} />
               <div className="lp-emb-cap">भारत सरकार<br/>Govt. of India</div>
+            </div> */}
+            <div className="lp-emb">
+              <img src={govlogo} alt="Govt of Karnataka" style={{ width: 80, height: 90, objectFit: 'contain' }} />
+              <div className="lp-emb-cap">ಕರ್ನಾಟಕ ಸರ್ಕಾರ<br />Govt. of Karnataka</div>
             </div>
           </div>
 
@@ -754,25 +762,24 @@ const Home = () => {
 
           {/* Right cluster: DI badge + Karnataka emblem + Minister photo (name below) */}
           <div className="lp-hdr-side">
-            <div className="lp-di-badge">
+            {/* <div className="lp-di-badge">
               <div className="lp-di-flag"><div className="lp-di-chakra"/></div>
               <div className="lp-di-text">DIGITAL INDIA</div>
-            </div>
+            </div> */}
             <div className="lp-nic-badge">
-              <div className="lp-nic-icon">NIC</div>
-              <div className="lp-nic-text">National Informatics Centre</div>
+              <img src={niclogo} alt="NIC Logo" style={{ width: 250, height: 84, objectFit: 'contain', background: '#fff', borderRadius: 4 }} />
             </div>
-            <div className="lp-emb" style={{alignItems:'center'}}>
+            {/* <div className="lp-emb" style={{alignItems:'center'}}>
               <KarnatakaEmblem />
               <div className="lp-emb-cap">ಕರ್ನಾಟಕ ಸರ್ಕಾರ<br/>Govt. of Karnataka</div>
-            </div>
-            <div className="lp-hdr-mini">
+            </div> */}
+            {/* <div className="lp-hdr-mini">
               <div className="lp-hdr-photo"><MinisterPortrait /></div>
               <div className="lp-hdr-person">
                 <span className="lp-hdr-person-name">Shri Priyank Kharge</span>
                 <span className="lp-hdr-person-role">Hon'ble Minister, RDPR</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -781,7 +788,7 @@ const Home = () => {
       <nav className="lp-nav">
         <div className="lp-nav-in">
           <div className="lp-nav-links">
-            {[['home','/','Home'],['services','#services','Services'],['about','#about','About'],['notices','#notices','Notifications'],['help','#help','Help & FAQ']].map(([id,href,label]) => (
+            {[['home', '/', 'Home'], ['services', '#services', 'Services'], ['about', '#about', 'About'], ['notices', '#notices', 'Notifications'], ['help', '#help', 'Help & FAQ']].map(([id, href, label]) => (
               <a
                 key={id}
                 href={href}
@@ -790,16 +797,16 @@ const Home = () => {
               >{label}</a>
             ))}
           </div>
-         
+
           <button className="lp-burger" onClick={() => setMobNavOpen(o => !o)}>☰</button>
         </div>
         <div className={`lp-mob-nav ${mobNavOpen ? 'open' : ''}`}>
-          {[['/',  '🏠 Home'],['#services','⚙️ Services'],['#about','ℹ️ About'],['#notices','📢 Notifications'],['#help','❓ Help & FAQ']].map(([href,label]) => (
+          {[['/', '🏠 Home'], ['#services', '⚙️ Services'], ['#about', 'ℹ️ About'], ['#notices', '📢 Notifications'], ['#help', '❓ Help & FAQ']].map(([href, label]) => (
             <a key={label} href={href} onClick={() => setMobNavOpen(false)}>{label}</a>
           ))}
           <div className="lp-mob-btns">
-            <button className="lp-nbtn dept"    onClick={() => { setMobNavOpen(false); navigate('/login',{state:{role:'dept'}}); }}>🏛️ Dept. Login</button>
-            <button className="lp-nbtn citizen" onClick={() => { setMobNavOpen(false); navigate('/login',{state:{role:'citizen'}}); }}>👤 Citizen Login</button>
+            <button className="lp-nbtn dept" onClick={() => { setMobNavOpen(false); navigate('/login', { state: { role: 'dept' } }); }}>🏛️ Dept. Login</button>
+            <button className="lp-nbtn citizen" onClick={() => { setMobNavOpen(false); navigate('/login', { state: { role: 'citizen' } }); }}>👤 Citizen Login</button>
           </div>
         </div>
       </nav>
@@ -817,13 +824,13 @@ const Home = () => {
 
       {/* ── HERO ── */}
       <section className="lp-hero" id="main">
-        <div className="lp-hero-mesh"/>
-        <div className="lp-hero-glow"/>
-        <div className="lp-hero-glow2"/>
+        <div className="lp-hero-mesh" />
+        <div className="lp-hero-glow" />
+        <div className="lp-hero-glow2" />
         <div className="lp-hero-in">
           <div className="lp-hero-left">
             <div className="lp-hero-badge">
-              <span className="lp-h-dot"/>
+              <span className="lp-h-dot" />
               RDPR Karnataka · NIC · Digital India Initiative
             </div>
             <h1>Rural Property Records, <span>Now Fully Digital</span></h1>
@@ -833,7 +840,7 @@ const Home = () => {
               Gram Panchayat jurisdiction. Download Form 9, Form 11B, e-Khata and track mutations —
               instantly, securely, free of cost.
             </p>
-            <div className="lp-srch">
+            {/* <div className="lp-srch">
               <input
                 type="text"
                 placeholder="Property ID, owner name, or survey number…"
@@ -849,7 +856,7 @@ const Home = () => {
                 Search →
               </button>
             </div>
-            <div className="lp-srch-note">No login needed · Free to access · Available 24 × 7</div>
+            <div className="lp-srch-note">No login needed · Free to access · Available 24 × 7</div> */}
           </div>
 
           <div className="lp-hero-right">
@@ -868,7 +875,7 @@ const Home = () => {
       {/* ── STATS ── */}
       <div className="lp-stats">
         <div className="lp-stats-in">
-          {[['2.4 Cr+','Properties Digitised'],['6,022','Gram Panchayats'],['31','Districts Covered'],['18 L+','Documents Issued (2026)']].map(([n,l]) => (
+          {[['2.4 Cr+', 'Properties Digitised'], ['6,022', 'Gram Panchayats'], ['31', 'Districts Covered'], ['18 L+', 'Documents Issued (2026)']].map(([n, l]) => (
             <div className="lp-st" key={l}>
               <div className="lp-st-n">{n}</div>
               <div className="lp-st-l">{l}</div>
@@ -889,11 +896,11 @@ const Home = () => {
           </div>
           <div className="lp-feats">
             {[
-              ['📄','Form 9 — Property Register Extract','Issued by Gram Panchayat for non-agricultural properties. Required for property sale, registration, loan applications, and building permits. Digitally signed by PDO.'],
-              ['📋','Form 11B — Demand & Collection Register','Shows tax assessment, payment history, and mutation trail. Essential to verify legal status before purchase.'],
-              ['🏡','e-Khata — Digital Ownership Certificate','The digital version of the Khata, linking property ownership to official records. Required by banks and courts.'],
-              ['🔄','Mutation — Ownership Transfer','Apply online for property transfer after sale, inheritance, or gift. Track status from submission to approval in real time.'],
-            ].map(([ico,title,desc]) => (
+              ['📄', 'Form 9 — Property Register Extract', 'Issued by Gram Panchayat for non-agricultural properties. Required for property sale, registration, loan applications, and building permits. Digitally signed by PDO.'],
+              ['📋', 'Form 11B — Demand & Collection Register', 'Shows tax assessment, payment history, and mutation trail. Essential to verify legal status before purchase.'],
+              ['🏡', 'e-Khata — Digital Ownership Certificate', 'The digital version of the Khata, linking property ownership to official records. Required by banks and courts.'],
+              ['🔄', 'Mutation — Ownership Transfer', 'Apply online for property transfer after sale, inheritance, or gift. Track status from submission to approval in real time.'],
+            ].map(([ico, title, desc]) => (
               <div className="lp-feat" key={title}>
                 <div className="lp-feat-ico">{ico}</div>
                 <div className="lp-feat-bd"><h4>{title}</h4><p>{desc}</p></div>
@@ -922,7 +929,7 @@ const Home = () => {
               key={c.title}
               className={`lp-card ${c.featured ? 'hot' : ''}`}
               onClick={() => handleCard(c.route)}
-              style={{cursor: c.route ? 'pointer' : 'default'}}
+              style={{ cursor: c.route ? 'pointer' : 'default' }}
             >
               <div className="lp-card-ico">{c.icon}</div>
               <div className="lp-card-title">{c.title}</div>
@@ -939,7 +946,7 @@ const Home = () => {
           <div className="lp-ph"><span>📢</span><h4>Latest Notifications</h4><span className="lp-ph-badge">NEW</span></div>
           {notifications.map(n => (
             <div className="lp-pr" key={n.text}>
-              <div className="lp-pd" style={{background:n.dot}}/>
+              <div className="lp-pd" style={{ background: n.dot }} />
               <div className="lp-pt"><strong>{n.text}</strong>{n.sub}</div>
             </div>
           ))}
@@ -948,7 +955,7 @@ const Home = () => {
           <div className="lp-ph"><span>🔗</span><h4>Related Government Portals</h4></div>
           {relatedPortals.map(p => (
             <div className="lp-pr" key={p.text}>
-              <div className="lp-pd" style={{background:p.dot}}/>
+              <div className="lp-pd" style={{ background: p.dot }} />
               <div className="lp-pt"><strong>{p.text}</strong>{p.sub}</div>
             </div>
           ))}
@@ -989,21 +996,21 @@ const Home = () => {
       <footer className="lp-footer">
         <div className="lp-ft-top">
           <div className="lp-ft-logos">
-            {[['🏛️','Govt. of Karnataka'],['💻','NIC'],['🇮🇳','Digital India'],['🔒','SSL Secured']].map(([ico,lbl]) => (
+            {[['🏛️', 'Govt. of Karnataka'], ['💻', 'NIC'], ['🇮🇳', 'Digital India'], ['🔒', 'SSL Secured']].map(([ico, lbl]) => (
               <div className="lp-fl" key={lbl}>
                 <div className="lp-fl-badge">{ico}</div>
                 <span>{lbl}</span>
               </div>
             ))}
           </div>
-          <div style={{fontSize:11,color:'#334155',textAlign:'right',lineHeight:1.7}}>
-            Best viewed in Chrome v87+ · Firefox v83+ · Edge v87+<br/>
+          <div style={{ fontSize: 11, color: '#334155', textAlign: 'right', lineHeight: 1.7 }}>
+            Best viewed in Chrome v87+ · Firefox v83+ · Edge v87+<br />
             Screen resolution: 1280×800 to 1920×1080
           </div>
         </div>
         <div className="lp-ft-txt">
-          e-Swathu · Rural Development &amp; Panchayat Raj Department, Government of Karnataka<br/>
-          Designed, Developed and Hosted by: <a href="#">Centre for e-Governance (CeG)</a> &amp; <a href="#">National Informatics Centre (NIC)</a><br/>
+          e-Swathu · Rural Development &amp; Panchayat Raj Department, Government of Karnataka<br />
+          Designed, Developed and Hosted by: <a href="#">Centre for e-Governance (CeG)</a> &amp; <a href="#">National Informatics Centre (NIC)</a><br />
           © 2026 Government of Karnataka · All Rights Reserved ·{' '}
           <a href="#">Privacy Policy</a> · <a href="#">Disclaimer</a> · <a href="#">Accessibility</a> · <a href="#">Site Map</a> · <a href="#">Contact Us</a>
         </div>
