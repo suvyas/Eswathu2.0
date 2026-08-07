@@ -18,6 +18,12 @@ const endpoints = {
 
   // Reports
   REPORTS: "/reports",
+
+  // Citizen Data Entry Phase 1
+  GET_CLASSIFICATIONS: "/PropertyEntry/GetClassifications",
+  GET_PROPERTY_TYPES: "/PropertyEntry/GetPropertyTypes",
+  GET_PROPERTY_CATEGORIES: "/PropertyEntry/GetPropertyCategories",
+  SAVE_BASIC_DETAILS: "/PropertyEntry/SaveBasicDetails",
 };
 
 export default endpoints;

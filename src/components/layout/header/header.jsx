@@ -69,21 +69,21 @@ const Header = () => {
         </Box>
         <IconButton onClick={handleDrawerToggle} sx={{ color: 'rgba(255,255,255,0.72)', '&:hover': { color: '#fff' } }}><CloseIcon /></IconButton>
       </Box>
-      <ListItem button onClick={() => handleRefresh('https://eswathu.karnataka.gov.in/citizen_core')} sx={drawerItemSx}>
+      <ListItem  onClick={() => handleRefresh('https://eswathu.karnataka.gov.in/citizen_core')} sx={drawerItemSx}>
         <HomeIcon sx={{ mr: 1.5, fontSize: 18, color: COLORS.accentLight }} />
-        <ListItemText primary="ಮುಖಪುಟ" primaryTypographyProps={{ sx: drawerLabelSx }} />
+        <ListItemText primary="ಮುಖಪುಟ" primarytypographyprops={{ sx: drawerLabelSx }} />
       </ListItem>
       {menuTitles.map((title, index) => (
         <React.Fragment key={index}>
-          <ListItem button onClick={() => handleSubMenuClick(index)} sx={drawerItemSx}>
-            <ListItemText primary={title} primaryTypographyProps={{ sx: drawerLabelSx }} />
+          <ListItem onClick={() => handleSubMenuClick(index)} sx={drawerItemSx}>
+            <ListItemText primary={title} primarytypographyprops={{ sx: drawerLabelSx }} />
             {openSubMenuId === index ? <ExpandLess sx={{ color: COLORS.accentLight }} /> : <ExpandMore sx={{ color: 'rgba(255,255,255,0.5)' }} />}
           </ListItem>
           <Collapse in={openSubMenuId === index} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               {menuItems[index]?.map((item, idx) => (
-                <ListItem button key={idx} sx={{ ...drawerItemSx, pl: 4 }} onClick={() => handleRedirect(item.url)}>
-                  <ListItemText primary={item.label} primaryTypographyProps={{ sx: { ...drawerLabelSx, fontSize: 13 } }} />
+                <ListItem key={idx} sx={{ ...drawerItemSx, pl: 4 }} onClick={() => handleRedirect(item.url)}>
+                  <ListItemText primary={item.label} primarytypographyprops={{ sx: { ...drawerLabelSx, fontSize: 13 } }} />
                 </ListItem>
               ))}
             </List>

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { LanguageProvider } from "@/context/LanguageContext";
 import Layout from "@/components/layout/Layout";
 import Home from "@/features/home/home";
 import Login from "@/features/auth/login";
@@ -14,6 +14,7 @@ import About from "@/features/about/about";
 import Notifications from "@/features/notifications/notifications";
 import Help from "@/features/help/help";
 import Propertyregistration_new from "@/features/dashboard/Propertyregistration_new"
+import BasicDetailsForm from "@/features/CitizenDataEntry/BasicDetailsForm";
 
 const AppRoutes = () => {
   return (
@@ -34,6 +35,7 @@ const AppRoutes = () => {
           <Route path="/property-map" element={<PropertyMapGIS />} />
           <Route path="/Propertyregistration_new" element={<Propertyregistration_new />} />
           <Route path="/propertylist" element={<PropertyList />} />
+          <Route path="/citizen-entry" element={<BasicDetailsForm />} />
         </Route>
       </Routes>
     </BrowserRouter>
